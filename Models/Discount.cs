@@ -53,5 +53,9 @@ namespace Models
         {
             return !(left == right);
         }
+        public static void UpdateAutoId(int v)
+        {
+            s_autoId = v;
+        }
     }
 }
