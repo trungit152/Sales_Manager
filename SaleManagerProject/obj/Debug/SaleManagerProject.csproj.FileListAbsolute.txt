@@ -15,3 +15,4 @@ C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\S
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.csproj.CopyComplete
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.exe
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.pdb
+C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.AddEditItemFrm.resources

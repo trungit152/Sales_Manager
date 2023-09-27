@@ -45,6 +45,7 @@
     <Compile Include="ICommonController.cs" />
     <Compile Include="IIOController.cs" />
     <Compile Include="InvalidEmailException.cs" />
+    <Compile Include="InvalidItemNameException.cs" />
     <Compile Include="InvalidNameException.cs" />
     <Compile Include="InvalidPhoneNumberException.cs" />
     <Compile Include="IStatController.cs" />
