@@ -8,5 +8,10 @@ namespace Controllers
 {
     internal interface ICommonController
     {
+        void AddNewItem<T> (List<T> items, T item);
+        int UpdateItem<T>(List<T> values, T item);
+        int DeleteItem<T>(List<T> items, T item);
+        int IndexOfItem<T>(List<T> items, T Item);
+
     }
 }

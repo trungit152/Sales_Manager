@@ -256,6 +256,7 @@
             this.MinimizeBox = false;
             this.Name = "AddEditItemFrm";
             this.Text = "Thêm mới mặt hàng";
+            this.Load += new System.EventHandler(this.AddEditItemFrm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).EndInit();
             this.ResumeLayout(false);

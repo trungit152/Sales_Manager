@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
+using Controllers;
 
 namespace SaleManagerProject
 {
@@ -21,6 +22,7 @@ namespace SaleManagerProject
         private List<Item> _items;
         private List<Discount> _discounts;
         private List<Customer> _customers;
+        private CommonController _commonController;
         public HomeFrm()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace SaleManagerProject
             _items = new List<Item>();
             _discounts = new List<Discount>();
             _customers = new List<Customer>();
+            _commonController = new CommonController();
         }
 
         private void BtnAddNewClick(object sender, EventArgs e)
@@ -45,6 +48,7 @@ namespace SaleManagerProject
             if (typeof(T) == typeof(Item))
             {
                 var newItem = item as Item;
+                _commonController.AddNewItem(_items, newItem);
                 tblItem.Rows.Add(new object[]
                 {
                     newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
@@ -60,7 +64,19 @@ namespace SaleManagerProject
 
         public void UpdateItem<T>(T updatedItem)
         {
-            throw new NotImplementedException();
+            if(typeof(T) == typeof(Item))
+            {
+                var newItem = updatedItem as Item;
+                int updatedIndex = _commonController.UpdateItem(_items, newItem);
+                tblItem.Rows.RemoveAt(updatedIndex);
+                tblItem.Rows.Insert(updatedIndex,
+                    new object[]{
+                        newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
+                        newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyy"),$"{newItem.Price:N0}",
+                        newItem.Discount == null ? "-" : newItem.Discount.Name
+                    }
+                );
+            }
         }
         private void HomeFrm_Load(object sender, EventArgs e)
         {
@@ -187,6 +203,13 @@ namespace SaleManagerProject
 
         }
 
-
+        private void TblItemCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex>= 0 && e.ColumnIndex == tblItem.Columns["tblItemEdit"].Index) 
+            {
+                var updateItemView = new AddEditItemFrm(this, _discounts, _items[e.RowIndex]);
+                updateItemView.Show();
+            }
+        }
     }
 }

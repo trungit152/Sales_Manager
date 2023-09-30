@@ -14,7 +14,7 @@ namespace SaleManagerProject
     public partial class AddEditItemFrm : Form
     {
         private List<Discount> _discounts;
-        private List<Item> _items;
+        private Item _item;
         private IViewController _controller;
         public AddEditItemFrm()
         {
@@ -25,6 +25,33 @@ namespace SaleManagerProject
         {
             _discounts= discounts;
             _controller = masterView;
+            
+            if (item != null)
+            {
+                Text = "CẬP NHẬT THÔNG TIN MẶT HÀNG";
+                btnAddNew.Text = "Cập nhật";
+                _item = item;
+                ShowItemData();
+            }
+        }
+
+        private void ShowItemData()
+        {
+            txtId.Text = $"{_item.ItemId}";
+            txtItemName.Text = _item.ItemName;
+            txtBrand.Text = _item.Brand;
+            numericQuantity.Value= _item.Quantity;
+            numericPrice.Value= _item.Price;
+            comboItemType.Text= _item.ItemType;
+            for (int i = 0; i < comboDiscount.Items.Count; i++)
+            {
+                if (_item.Discount?.Name.CompareTo(comboDiscount.Items[i]) == 0)
+                {
+                    comboDiscount.SelectedIndex = i; 
+                    break;
+                }
+            }
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -70,7 +97,30 @@ namespace SaleManagerProject
                     return;
                 }
                 Item item = new Item(id, itemName, itemType, quantity, brand, manufactureDate, itemPrice, discount);
-                _controller.AddNewItem(item);
+                //
+                if(btnAddNew.Text.CompareTo("Cập nhật") == 0)
+                {
+                    _item.ItemName = itemName;
+                    _item.ItemType = itemType;
+                    _item.Quantity = quantity;
+                    _item.Brand = brand;
+                    _item.Price = itemPrice;
+                    _item.Discount= discount;
+                    _item.ReleaseDate= manufactureDate;
+                    var msg = "Bạn có chắc chắn muốn cập nhật?";
+                    var title = "Xác nhận"; 
+                    var ans = ShowConfirmMessage(title, msg);
+                    if(ans == DialogResult.Yes) 
+                    {
+                        _controller.UpdateItem(_item);
+                        Dispose();
+                    }
+                    
+                }
+                else
+                {
+                    _controller.AddNewItem(item);
+                }
             }
             catch (InvalidItemNameException ex)
             {
@@ -80,7 +130,7 @@ namespace SaleManagerProject
         }
         private void BtnCancelClick(object sender, EventArgs e)
         {
-            var ans = ShowConfirmMessage("Xác nhận", "Bạn muốn hủy mặt hàng?");
+            var ans = ShowConfirmMessage("Xác nhận", "Bạn muốn hủy?");
             if(ans == DialogResult.Yes)
             {
                 Dispose();
@@ -90,6 +140,11 @@ namespace SaleManagerProject
         private DialogResult ShowConfirmMessage(string v1, string v2)
         {
             return MessageBox.Show(v2, v1, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        private void AddEditItemFrm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
