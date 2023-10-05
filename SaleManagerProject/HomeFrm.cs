@@ -209,7 +209,24 @@ namespace SaleManagerProject
             {
                 var updateItemView = new AddEditItemFrm(this, _discounts, _items[e.RowIndex]);
                 updateItemView.Show();
+            } 
+            else if (e.RowIndex >= 0 && e.ColumnIndex == tblItem.Columns["tblItemRemove"].Index)
+            {
+                var title = "Xác nhận xóa?";
+                var msg = "Bạn muốn xóa bản ghi?";
+                var ans = ShowConfirmDialog(msg, title);
+                if (ans == DialogResult.Yes)
+                {
+                    var removeItemIndex = _commonController.DeleteItem(_items, _items[e.RowIndex]);
+                    tblItem.Rows.RemoveAt(removeItemIndex);
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             }
+        }
+        private DialogResult ShowConfirmDialog(string msg, string title)
+        {
+            return MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
     }
 }
