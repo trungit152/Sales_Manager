@@ -51,11 +51,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboSearchItem = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioSortItemByProductDate = new System.Windows.Forms.RadioButton();
+            this.radioSortItemByQuantity = new System.Windows.Forms.RadioButton();
+            this.radioSortItemByName = new System.Windows.Forms.RadioButton();
+            this.radioSortItemByPriceDSC = new System.Windows.Forms.RadioButton();
+            this.radioSortItemByPriceASC = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRefreshItem = new System.Windows.Forms.Button();
             this.btnAddNewItem = new System.Windows.Forms.Button();
@@ -220,6 +220,7 @@
             this.btnSearchItem.TabIndex = 8;
             this.btnSearchItem.Text = "Tìm kiếm";
             this.btnSearchItem.UseVisualStyleBackColor = true;
+            this.btnSearchItem.Click += new System.EventHandler(this.BtnSearchItemClick);
             // 
             // numericItemTo
             // 
@@ -232,18 +233,14 @@
             // 
             this.numericItemFrom.Location = new System.Drawing.Point(99, 101);
             this.numericItemFrom.Maximum = new decimal(new int[] {
-            999999,
+            99999999,
             0,
             0,
             0});
             this.numericItemFrom.Name = "numericItemFrom";
             this.numericItemFrom.Size = new System.Drawing.Size(71, 22);
             this.numericItemFrom.TabIndex = 6;
-            this.numericItemFrom.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.numericItemFrom.ValueChanged += new System.EventHandler(this.numericItemFrom_ValueChanged);
             // 
             // label4
             // 
@@ -306,15 +303,15 @@
             this.comboSearchItem.Name = "comboSearchItem";
             this.comboSearchItem.Size = new System.Drawing.Size(224, 24);
             this.comboSearchItem.TabIndex = 0;
-            this.comboSearchItem.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboSearchItem.SelectedIndexChanged += new System.EventHandler(this.ComboSearchItemSelectedIndexChanged);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton5);
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.radioSortItemByProductDate);
+            this.groupBox2.Controls.Add(this.radioSortItemByQuantity);
+            this.groupBox2.Controls.Add(this.radioSortItemByName);
+            this.groupBox2.Controls.Add(this.radioSortItemByPriceDSC);
+            this.groupBox2.Controls.Add(this.radioSortItemByPriceASC);
             this.groupBox2.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox2.Location = new System.Drawing.Point(368, 466);
             this.groupBox2.Name = "groupBox2";
@@ -325,65 +322,65 @@
             this.groupBox2.Text = "Sắp xếp";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // radioButton5
+            // radioSortItemByProductDate
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(181, 90);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(168, 20);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Ngày sản xuất tăng dần";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            this.radioSortItemByProductDate.AutoSize = true;
+            this.radioSortItemByProductDate.Location = new System.Drawing.Point(181, 90);
+            this.radioSortItemByProductDate.Name = "radioSortItemByProductDate";
+            this.radioSortItemByProductDate.Size = new System.Drawing.Size(168, 20);
+            this.radioSortItemByProductDate.TabIndex = 4;
+            this.radioSortItemByProductDate.TabStop = true;
+            this.radioSortItemByProductDate.Text = "Ngày sản xuất tăng dần";
+            this.radioSortItemByProductDate.UseVisualStyleBackColor = true;
+            this.radioSortItemByProductDate.CheckedChanged += new System.EventHandler(this.SortItemHandler);
             // 
-            // radioButton4
+            // radioSortItemByQuantity
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(181, 36);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(140, 20);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Số lượng giảm dần";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            this.radioSortItemByQuantity.AutoSize = true;
+            this.radioSortItemByQuantity.Location = new System.Drawing.Point(181, 36);
+            this.radioSortItemByQuantity.Name = "radioSortItemByQuantity";
+            this.radioSortItemByQuantity.Size = new System.Drawing.Size(140, 20);
+            this.radioSortItemByQuantity.TabIndex = 3;
+            this.radioSortItemByQuantity.TabStop = true;
+            this.radioSortItemByQuantity.Text = "Số lượng giảm dần";
+            this.radioSortItemByQuantity.UseVisualStyleBackColor = true;
+            this.radioSortItemByQuantity.CheckedChanged += new System.EventHandler(this.SortItemHandler);
             // 
-            // radioButton3
+            // radioSortItemByName
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(11, 142);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(49, 20);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "A-Z";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.radioSortItemByName.AutoSize = true;
+            this.radioSortItemByName.Location = new System.Drawing.Point(11, 142);
+            this.radioSortItemByName.Name = "radioSortItemByName";
+            this.radioSortItemByName.Size = new System.Drawing.Size(49, 20);
+            this.radioSortItemByName.TabIndex = 2;
+            this.radioSortItemByName.TabStop = true;
+            this.radioSortItemByName.Text = "A-Z";
+            this.radioSortItemByName.UseVisualStyleBackColor = true;
+            this.radioSortItemByName.CheckedChanged += new System.EventHandler(this.SortItemHandler);
             // 
-            // radioButton2
+            // radioSortItemByPriceDSC
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(11, 90);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(161, 20);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Giá niêm yết giảm dần";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioSortItemByPriceDSC.AutoSize = true;
+            this.radioSortItemByPriceDSC.Location = new System.Drawing.Point(11, 90);
+            this.radioSortItemByPriceDSC.Name = "radioSortItemByPriceDSC";
+            this.radioSortItemByPriceDSC.Size = new System.Drawing.Size(161, 20);
+            this.radioSortItemByPriceDSC.TabIndex = 1;
+            this.radioSortItemByPriceDSC.TabStop = true;
+            this.radioSortItemByPriceDSC.Text = "Giá niêm yết giảm dần";
+            this.radioSortItemByPriceDSC.UseVisualStyleBackColor = true;
+            this.radioSortItemByPriceDSC.CheckedChanged += new System.EventHandler(this.SortItemHandler);
             // 
-            // radioButton1
+            // radioSortItemByPriceASC
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(11, 36);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(157, 20);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Giá niêm yết tăng dần";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioSortItemByPriceASC.AutoSize = true;
+            this.radioSortItemByPriceASC.Location = new System.Drawing.Point(11, 36);
+            this.radioSortItemByPriceASC.Name = "radioSortItemByPriceASC";
+            this.radioSortItemByPriceASC.Size = new System.Drawing.Size(157, 20);
+            this.radioSortItemByPriceASC.TabIndex = 0;
+            this.radioSortItemByPriceASC.TabStop = true;
+            this.radioSortItemByPriceASC.Text = "Giá niêm yết tăng dần";
+            this.radioSortItemByPriceASC.UseVisualStyleBackColor = true;
+            this.radioSortItemByPriceASC.CheckedChanged += new System.EventHandler(this.SortItemHandler);
             // 
             // groupBox1
             // 
@@ -409,7 +406,7 @@
             this.btnRefreshItem.TabIndex = 1;
             this.btnRefreshItem.Text = "Làm mới";
             this.btnRefreshItem.UseVisualStyleBackColor = true;
-            this.btnRefreshItem.Click += new System.EventHandler(this.btnRefreshItem_Click);
+            this.btnRefreshItem.Click += new System.EventHandler(this.btnRefreshClick);
             // 
             // btnAddNewItem
             // 
@@ -1277,11 +1274,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRefreshItem;
         private System.Windows.Forms.Button btnAddNewItem;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioSortItemByProductDate;
+        private System.Windows.Forms.RadioButton radioSortItemByQuantity;
+        private System.Windows.Forms.RadioButton radioSortItemByName;
+        private System.Windows.Forms.RadioButton radioSortItemByPriceDSC;
+        private System.Windows.Forms.RadioButton radioSortItemByPriceASC;
         private System.Windows.Forms.TextBox txtSearchItem;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

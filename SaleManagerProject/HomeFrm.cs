@@ -16,6 +16,7 @@ namespace SaleManagerProject
     {
         void AddNewItem<T> (T item);
         void UpdateItem<T> (T updatedItem);
+
     }
     public partial class HomeFrm : Form, IViewController
     {
@@ -23,6 +24,7 @@ namespace SaleManagerProject
         private List<Discount> _discounts;
         private List<Customer> _customers;
         private CommonController _commonController;
+        private ItemController _itemController;
         public HomeFrm()
         {
             InitializeComponent();
@@ -31,6 +33,11 @@ namespace SaleManagerProject
             _discounts = new List<Discount>();
             _customers = new List<Customer>();
             _commonController = new CommonController();
+            _itemController = new ItemController();
+            //nạp dữ liệu
+            _items.AddRange(Utils.CreateFakeItems());
+            //Hien thi
+            ShowItems(_items);
         }
 
         private void BtnAddNewClick(object sender, EventArgs e)
@@ -227,6 +234,170 @@ namespace SaleManagerProject
         private DialogResult ShowConfirmDialog(string msg, string title)
         {
             return MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        private void SortItemHandler(object sender, EventArgs e)
+        {
+            if (radioSortItemByPriceASC.Checked)
+            {
+                _commonController.Sort(_items, _itemController.CompareItemByPriceASC);
+            }
+            else if (radioSortItemByPriceDSC.Checked)
+            {
+                _commonController.Sort(_items, _itemController.CompareItemByPriceDSC);
+            }
+            else if (radioSortItemByName.Checked)
+            {
+                _commonController.Sort(_items, _itemController.CompareItemByName);
+            }
+            else if (radioSortItemByProductDate.Checked)
+            {
+                _commonController.Sort(_items, _itemController.CompareItemByDate);
+            }
+            else if (radioSortItemByQuantity.Checked)
+            {
+                _commonController.Sort(_items, _itemController.CompareItemByQuantity);
+            }
+            ShowItems(_items);
+        }
+
+        private void ShowItems(List<Item> items)
+        {
+            tblItem.Rows.Clear();
+            foreach(var item in items)
+            {
+                tblItem.Rows.Add(new object[]
+                {
+                    item.ItemId, item.ItemName, item.ItemType, item.Quantity,
+                    item.Brand, item.ReleaseDate.ToString("dd/MM/yyy"),$"{item.Price:N0}",
+                    item.Discount == null ? "-" : item.Discount.Name
+                });
+            }
+        }
+
+        private void numericItemFrom_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComboSearchItemSelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboSearchItem.SelectedIndex)
+            {
+                case 0:
+                case 2:
+                case 3:
+                    txtSearchItem.Enabled = true;
+                    numericItemFrom.Enabled = false;
+                    numericItemTo.Enabled = false;
+                    break;
+                case 1:
+                case 4:
+                    txtSearchItem.Enabled = false;
+                    numericItemFrom.Enabled = true;
+                    numericItemTo.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void BtnSearchItemClick(object sender, EventArgs e)
+        {
+            tblItem.Rows.Clear();
+            if(comboSearchItem.SelectedIndex == -1)
+            {
+                var msg = "Chọn tiêu chí để tìm kiếm";
+                var title = "Lỗi";
+                MessageBox.Show(msg,title,MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(comboSearchItem.SelectedIndex == 0) 
+            {
+                var key = txtSearchItem.Text;
+                var result = _commonController.Search(_items, _itemController.IsItemNameMatch, key);
+                if(result.Count == 0)
+                {
+                    var msg = "Không tìm thấy kết quả nào";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ShowItems(result);
+                }
+            }
+            else if (comboSearchItem.SelectedIndex == 1)
+            {
+                int from = (int)numericItemFrom.Value;
+                int to = (int)numericItemTo.Value;
+                var key = txtSearchItem.Text;
+                var result = _commonController.Search(_items, _itemController.IsItemPriceMatch, from, to);
+                if (result.Count == 0)
+                {
+                    var msg = "Không tìm thấy kết quả nào";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ShowItems(result);
+                }
+            }
+            else if (comboSearchItem.SelectedIndex == 2) //Loại mặt hàng
+            {
+                var key = txtSearchItem.Text;
+                var result = _commonController.Search(_items, _itemController.IsItemTypeMatch, key);
+                if (result.Count == 0)
+                {
+                    var msg = "Không tìm thấy kết quả nào";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ShowItems(result);
+                }
+            }
+            else if (comboSearchItem.SelectedIndex == 3)//Hãng sx
+            {
+                var key = txtSearchItem.Text;
+                var result = _commonController.Search(_items, _itemController.IsItemBrandMatch, key);
+                if (result.Count == 0)
+                {
+                    var msg = "Không tìm thấy kết quả nào";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ShowItems(result);
+                }
+            }
+            else if (comboSearchItem.SelectedIndex == 4)
+            {
+                int from = (int)numericItemFrom.Value;
+                int to = (int)numericItemTo.Value;
+                var key = txtSearchItem.Text;
+                var result = _commonController.Search(_items, _itemController.IsItemQuantityMatch, from, to);
+                if (result.Count == 0)
+                {
+                    var msg = "Không tìm thấy kết quả nào";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ShowItems(result);
+                }
+            }
+        }
+
+        private void btnRefreshClick(object sender, EventArgs e)
+        {
+            if (sender.Equals(btnRefreshItem))
+            {
+                ShowItems(_items);
+            }
         }
     }
 }

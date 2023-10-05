@@ -4,3 +4,6 @@ C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controll
 C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.csproj.CoreCompileInputs.cache
 C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.dll
 C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.pdb
+C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\bin\Debug\Models.dll
+C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\bin\Debug\Models.pdb
+C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.csproj.CopyComplete

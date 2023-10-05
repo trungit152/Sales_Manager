@@ -25,6 +25,37 @@ namespace Controllers
             return items.IndexOf(item);
         }
 
+        public List<T> Search<T, V>(List<T> items, FindItemDelegate1<T, V> del, V value)
+        {
+            List<T> result = new List<T>();
+            foreach(var item in items)
+            {
+                if(del(item, value))
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        public List<T> Search<T, V>(List<T> items, FindItemDelegate2<T, V> del, V from, V to)
+        {
+            List<T> result = new List<T>();
+            foreach (var item in items)
+            {
+                if (del(item, from, to))
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        public void Sort<T>(List<T> items, Comparison<T> comparer)
+        {
+            items.Sort(comparer);
+        }
+
         public int UpdateItem<T>(List<T> values, T item)
         {
             int index = IndexOfItem(values, item);
@@ -32,5 +63,7 @@ namespace Controllers
             values.Insert(index, item);
             return index;
         }
+
+
     }
 }
