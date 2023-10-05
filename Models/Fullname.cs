@@ -1,28 +1,36 @@
 ﻿namespace Models
 {
-    public class Fullname
+    public class FullName
     {
         public string FirstName { get; set; }
-        public string MidName { get; set; }
         public string LastName { get; set; }
-        public Fullname() { }
-        public Fullname(string fullName) 
+        public string MidName { get; set; }
+
+        public FullName() { }
+
+        public FullName(string fullName)
         {
             var data = fullName?.Split(' ');
             FirstName = data[data.Length - 1];
-            LastName= data[0];
-            var mid = ""; 
-            for (int i = 1; i < data.Length - 2; i++)
+            LastName = data[0];
+            var mid = "";
+            for (int i = 1; i < data.Length - 1; i++)
             {
                 mid += data[i] + " ";
             }
             MidName = mid.TrimEnd();
         }
-        public Fullname(string firstName, string midName, string lastName)
+
+        public FullName(string firstName, string lastName, string midName)
         {
             FirstName = firstName;
-            MidName = midName;
             LastName = lastName;
+            MidName = midName;
+        }
+
+        public override string ToString()
+        {
+            return $"{LastName} {MidName} {FirstName}";
         }
     }
 }

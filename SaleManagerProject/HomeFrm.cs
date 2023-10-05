@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using Controllers;
+using CSharpCourseFinalProject;
 
 namespace SaleManagerProject
 {
@@ -24,6 +25,8 @@ namespace SaleManagerProject
     }
     public partial class HomeFrm : Form, IViewController
     {
+        private static string DATE_FORMAT = "dd/MM/yyyy";
+        private static string DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
         private List<Item> _items;
         private List<Discount> _discounts;
         private List<Customer> _customers;
@@ -66,13 +69,30 @@ namespace SaleManagerProject
                 tblItem.Rows.Add(new object[]
                 {
                     newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
-                    newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyy"),$"{newItem.Price:N0}",
+                    newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyyy"), $"{newItem.Price:N0}",
                     newItem.Discount == null ? "-" : newItem.Discount.Name
                 });
             }
             else if (typeof(T) == typeof(Customer))
             {
-                //hiển thị lên bảng Customer
+                var customer = item as Customer;
+                int indexOfCustomer = _commonController.IndexOfItem(_customers, customer);
+                if (indexOfCustomer >= 0)
+                {
+                    var title = "Lỗi trùng lặp";
+                    var msg = "Thông tin khách hàng này đã tồn tại!";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                else
+                {
+                    _commonController.AddNewItem(_customers, customer);
+                    tblCustomer.Rows.Add(new object[]
+                    {
+                    customer.PersonId, customer.FullName?.ToString(), customer.BirthDate.ToString(DATE_FORMAT),
+                    customer.Address, customer.PhoneNumber, customer.CustomerType, $"{customer.Point:N0}",
+                    customer.CreateTime.ToString(DATE_TIME_FORMAT), customer.Email
+                    });
+                }
             }
         }
 
@@ -308,6 +328,18 @@ namespace SaleManagerProject
             {
                 ShowItems(_items);
             }
+        }
+
+        private void BtnAddNewCustomerClick(object sender, EventArgs e)
+        {
+            var childView = new AddEditCustomerFrm(this, null);
+            childView.Show();
+            CenterToParent();
+        }
+
+        private void tblCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

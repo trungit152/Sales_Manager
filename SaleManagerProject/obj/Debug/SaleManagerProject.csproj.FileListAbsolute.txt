@@ -7,7 +7,6 @@ C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\bin\Debug\C
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\bin\Debug\Models.pdb
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.csproj.AssemblyReference.cache
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.csproj.SuggestedBindingRedirects.cache
-C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.AddEditCustomerFrm.resources
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.HomeFrm.resources
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.Properties.Resources.resources
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.csproj.GenerateResource.cache
@@ -16,3 +15,4 @@ C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\S
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.exe
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.pdb
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.AddEditItemFrm.resources
+C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\CSharpCourseFinalProject.AddEditCustomerFrm.resources
