@@ -171,7 +171,6 @@
             this.tab.SelectedIndex = 0;
             this.tab.Size = new System.Drawing.Size(1101, 692);
             this.tab.TabIndex = 0;
-            this.tab.SelectedIndexChanged += new System.EventHandler(this.tab_SelectedIndexChanged);
             // 
             // tabItem
             // 
@@ -187,7 +186,6 @@
             this.tabItem.TabIndex = 0;
             this.tabItem.Text = "QL MẶT HÀNG";
             this.tabItem.UseVisualStyleBackColor = true;
-            this.tabItem.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // groupBox3
             // 
@@ -208,7 +206,6 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tìm kiếm";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // btnSearchItem
             // 
@@ -249,16 +246,13 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 16);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Đến:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
+            this.label4.Text = "Đến:";            // 
             // txtSearchItem
             // 
             this.txtSearchItem.Location = new System.Drawing.Point(99, 67);
             this.txtSearchItem.Name = "txtSearchItem";
             this.txtSearchItem.Size = new System.Drawing.Size(223, 22);
             this.txtSearchItem.TabIndex = 4;
-            this.txtSearchItem.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
@@ -268,7 +262,6 @@
             this.label3.Size = new System.Drawing.Size(29, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Từ :";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -278,7 +271,6 @@
             this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Nội dung:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -288,7 +280,6 @@
             this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Tiêu chí";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // comboSearchItem
             // 
@@ -320,7 +311,6 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sắp xếp";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // radioSortItemByProductDate
             // 
@@ -394,7 +384,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hành động";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_2);
             // 
             // btnRefreshItem
             // 
@@ -406,7 +395,7 @@
             this.btnRefreshItem.TabIndex = 1;
             this.btnRefreshItem.Text = "Làm mới";
             this.btnRefreshItem.UseVisualStyleBackColor = true;
-            this.btnRefreshItem.Click += new System.EventHandler(this.btnRefreshClick);
+            this.btnRefreshItem.Click += new System.EventHandler(this.BtnRefreshClick);
             // 
             // btnAddNewItem
             // 
@@ -453,7 +442,6 @@
             this.tblItem.Size = new System.Drawing.Size(1081, 453);
             this.tblItem.TabIndex = 0;
             this.tblItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblItemCellClick);
-            this.tblItem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column11
             // 
@@ -556,7 +544,6 @@
             this.tabCustomer.TabIndex = 1;
             this.tabCustomer.Text = "QL KHÁCH HÀNG";
             this.tabCustomer.UseVisualStyleBackColor = true;
-            this.tabCustomer.Click += new System.EventHandler(this.tabCustomer_Click);
             // 
             // groupBox4
             // 
@@ -754,7 +741,6 @@
             this.tabDiscount.TabIndex = 2;
             this.tabDiscount.Text = "QL KHUYẾN MÃI";
             this.tabDiscount.UseVisualStyleBackColor = true;
-            this.tabDiscount.Click += new System.EventHandler(this.tabDiscount_Click);
             // 
             // groupBox7
             // 
@@ -881,7 +867,6 @@
             this.tabBill.TabIndex = 3;
             this.tabBill.Text = "QL HÓA ĐƠN";
             this.tabBill.UseVisualStyleBackColor = true;
-            this.tabBill.Click += new System.EventHandler(this.tabBill_Click);
             // 
             // groupBox8
             // 
@@ -1160,7 +1145,6 @@
             this.tabStat.TabIndex = 4;
             this.tabStat.Text = "THỐNG KÊ";
             this.tabStat.UseVisualStyleBackColor = true;
-            this.tabStat.Click += new System.EventHandler(this.tabStat_Click);
             // 
             // groupBox12
             // 
@@ -1222,7 +1206,6 @@
             this.MinimizeBox = false;
             this.Name = "HomeFrm";
             this.Text = "Quản lý bán hàng";
-            this.Load += new System.EventHandler(this.HomeFrm_Load);
             this.tab.ResumeLayout(false);
             this.tabItem.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

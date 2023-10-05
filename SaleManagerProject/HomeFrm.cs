@@ -12,6 +12,10 @@ using Controllers;
 
 namespace SaleManagerProject
 {
+    public enum ActionType
+    {
+        NORMAL, SEARCH
+    }
     public interface IViewController
     {
         void AddNewItem<T> (T item);
@@ -25,6 +29,8 @@ namespace SaleManagerProject
         private List<Customer> _customers;
         private CommonController _commonController;
         private ItemController _itemController;
+        private List<Item> _searchItemResults;
+        private ActionType _actionType;
         public HomeFrm()
         {
             InitializeComponent();
@@ -34,6 +40,7 @@ namespace SaleManagerProject
             _customers = new List<Customer>();
             _commonController = new CommonController();
             _itemController = new ItemController();
+            _actionType= ActionType.NORMAL;
             //nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
             //Hien thi
@@ -71,165 +78,68 @@ namespace SaleManagerProject
 
         public void UpdateItem<T>(T updatedItem)
         {
-            if(typeof(T) == typeof(Item))
+            if (typeof(T) == typeof(Item))
             {
                 var newItem = updatedItem as Item;
-                int updatedIndex = _commonController.UpdateItem(_items, newItem);
+                int updatedIndex = -1;
+                if (_actionType == ActionType.NORMAL)
+                {
+                    updatedIndex = _commonController.UpdateItem(_items, newItem);
+                }
+                else
+                {
+                    updatedIndex = _commonController.UpdateItem(_searchItemResults, newItem);
+                    _commonController.UpdateItem(_items, newItem);
+                }
                 tblItem.Rows.RemoveAt(updatedIndex);
                 tblItem.Rows.Insert(updatedIndex,
-                    new object[]{
-                        newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
-                        newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyy"),$"{newItem.Price:N0}",
-                        newItem.Discount == null ? "-" : newItem.Discount.Name
-                    }
+                    new object[] {
+                            newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
+                            newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyyy"), $"{newItem.Price:N0}",
+                            newItem.Discount == null ? "-" : newItem.Discount.Name
+                        }
                 );
             }
         }
-        private void HomeFrm_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabCustomer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabDiscount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabBill_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabStat_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRefreshItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void TblItemCellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex>= 0 && e.ColumnIndex == tblItem.Columns["tblItemEdit"].Index) 
+            if (e.RowIndex >= 0 && e.ColumnIndex == tblItem.Columns["tblItemEdit"].Index)
             {
-                var updateItemView = new AddEditItemFrm(this, _discounts, _items[e.RowIndex]);
+                Item item = _items[e.RowIndex];
+                if (_actionType == ActionType.SEARCH)
+                {
+                    item = _searchItemResults[e.RowIndex];
+                }
+                var updateItemView = new AddEditItemFrm(this, _discounts, item);
                 updateItemView.Show();
-            } 
+            }
             else if (e.RowIndex >= 0 && e.ColumnIndex == tblItem.Columns["tblItemRemove"].Index)
             {
-                var title = "Xác nhận xóa?";
-                var msg = "Bạn muốn xóa bản ghi?";
+                var title = "Xác nhận xóa";
+                var msg = "Bạn có chắc chắn muốn xóa bản ghi này không?";
                 var ans = ShowConfirmDialog(msg, title);
                 if (ans == DialogResult.Yes)
                 {
-                    var removeItemIndex = _commonController.DeleteItem(_items, _items[e.RowIndex]);
-                    tblItem.Rows.RemoveAt(removeItemIndex);
-                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int removedItemIndex = -1;
+                    if (_actionType == ActionType.NORMAL)
+                    {
+                        Item item = _items[e.RowIndex];
+                        removedItemIndex = _commonController.DeleteItem(_items, item);
+                    }
+                    else if (_actionType == ActionType.SEARCH)
+                    {
+                        Item item = _searchItemResults[e.RowIndex];
+                        removedItemIndex = _commonController.DeleteItem(_searchItemResults, item);
+                        _commonController.DeleteItem(_items, item);
+                    }
+                    tblItem.Rows.RemoveAt(removedItemIndex);
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
+
             }
+            // tblItemRemove
         }
         private DialogResult ShowConfirmDialog(string msg, string title)
         {
@@ -305,95 +215,95 @@ namespace SaleManagerProject
         private void BtnSearchItemClick(object sender, EventArgs e)
         {
             tblItem.Rows.Clear();
-            if(comboSearchItem.SelectedIndex == -1)
+            _actionType = ActionType.SEARCH;
+            if (comboSearchItem.SelectedIndex == -1)
             {
-                var msg = "Chọn tiêu chí để tìm kiếm";
-                var title = "Lỗi";
-                MessageBox.Show(msg,title,MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var msg = "Vui lòng chọn tiêu chí tìm kiếm để tiếp tục";
+                var title = "Lỗi dữ liệu";
+                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if(comboSearchItem.SelectedIndex == 0) 
+            else if (comboSearchItem.SelectedIndex == 0)
             {
                 var key = txtSearchItem.Text;
-                var result = _commonController.Search(_items, _itemController.IsItemNameMatch, key);
-                if(result.Count == 0)
+                _searchItemResults = _commonController.Search(_items, _itemController.IsItemNameMatch, key);
+                if (_searchItemResults.Count == 0)
                 {
-                    var msg = "Không tìm thấy kết quả nào";
-                    var title = "Kết quả tìm kiếm";
-                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var msg = "Không tìm thấy kết quả nào.";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ShowItems(result);
+                    ShowItems(_searchItemResults);
                 }
             }
             else if (comboSearchItem.SelectedIndex == 1)
             {
                 int from = (int)numericItemFrom.Value;
                 int to = (int)numericItemTo.Value;
-                var key = txtSearchItem.Text;
-                var result = _commonController.Search(_items, _itemController.IsItemPriceMatch, from, to);
-                if (result.Count == 0)
+                _searchItemResults = _commonController.Search(_items, _itemController.IsItemPriceMatch, from, to);
+                if (_searchItemResults.Count == 0)
                 {
-                    var msg = "Không tìm thấy kết quả nào";
-                    var title = "Kết quả tìm kiếm";
-                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var msg = "Không tìm thấy kết quả nào.";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ShowItems(result);
+                    ShowItems(_searchItemResults);
                 }
             }
-            else if (comboSearchItem.SelectedIndex == 2) //Loại mặt hàng
+            else if (comboSearchItem.SelectedIndex == 2) // loại mặt hàng
             {
                 var key = txtSearchItem.Text;
-                var result = _commonController.Search(_items, _itemController.IsItemTypeMatch, key);
-                if (result.Count == 0)
+                _searchItemResults = _commonController.Search(_items, _itemController.IsItemTypeMatch, key);
+                if (_searchItemResults.Count == 0)
                 {
-                    var msg = "Không tìm thấy kết quả nào";
-                    var title = "Kết quả tìm kiếm";
-                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var msg = "Không tìm thấy kết quả nào.";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ShowItems(result);
+                    ShowItems(_searchItemResults);
                 }
             }
-            else if (comboSearchItem.SelectedIndex == 3)//Hãng sx
+            else if (comboSearchItem.SelectedIndex == 3) // hãng
             {
                 var key = txtSearchItem.Text;
-                var result = _commonController.Search(_items, _itemController.IsItemBrandMatch, key);
-                if (result.Count == 0)
+                _searchItemResults = _commonController.Search(_items, _itemController.IsItemBrandMatch, key);
+                if (_searchItemResults.Count == 0)
                 {
-                    var msg = "Không tìm thấy kết quả nào";
-                    var title = "Kết quả tìm kiếm";
-                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var msg = "Không tìm thấy kết quả nào.";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ShowItems(result);
+                    ShowItems(_searchItemResults);
                 }
             }
             else if (comboSearchItem.SelectedIndex == 4)
             {
                 int from = (int)numericItemFrom.Value;
                 int to = (int)numericItemTo.Value;
-                var key = txtSearchItem.Text;
-                var result = _commonController.Search(_items, _itemController.IsItemQuantityMatch, from, to);
-                if (result.Count == 0)
+                _searchItemResults = _commonController.Search(_items, _itemController.IsItemQuantityMatch, from, to);
+                if (_searchItemResults.Count == 0)
                 {
-                    var msg = "Không tìm thấy kết quả nào";
-                    var title = "Kết quả tìm kiếm";
-                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var msg = "Không tìm thấy kết quả nào.";
+                    var title = "Kết quả tìm kiếm";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ShowItems(result);
+                    ShowItems(_searchItemResults);
                 }
             }
         }
 
-        private void btnRefreshClick(object sender, EventArgs e)
+        private void BtnRefreshClick(object sender, EventArgs e)
         {
+            _actionType = ActionType.NORMAL;
             if (sender.Equals(btnRefreshItem))
             {
                 ShowItems(_items);
