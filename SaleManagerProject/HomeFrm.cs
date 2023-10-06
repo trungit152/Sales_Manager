@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using Controllers;
@@ -19,8 +13,8 @@ namespace SaleManagerProject
     }
     public interface IViewController
     {
-        void AddNewItem<T> (T item);
-        void UpdateItem<T> (T updatedItem);
+        void AddNewItem<T>(T item);
+        void UpdateItem<T>(T updatedItem);
 
     }
     public partial class HomeFrm : Form, IViewController
@@ -36,6 +30,7 @@ namespace SaleManagerProject
         private ActionType _actionType;
         private List<Customer> _searchCustomerResults;
         private CustomerController _customerController;
+        private List<Discount> _searchDiscountResults;
         public HomeFrm()
         {
             InitializeComponent();
@@ -51,9 +46,27 @@ namespace SaleManagerProject
             //nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
             _customers.AddRange(Utils.CreateFakeCustomer());
+            _searchDiscountResults = new List<Discount>();
+            _discounts.AddRange(Utils.CreateFakeDiscounts());
             //Hien thi
             ShowItems(_items);
             ShowCustomers(_customers);
+            ShowDiscount(_discounts);
+        }
+
+        private void ShowDiscount(List<Discount> discounts)
+        {
+            tblDiscount.Rows.Clear();
+            foreach (var discount in discounts)
+            {
+                tblDiscount.Rows.Add(
+                    new object[] {
+                        discount.DiscountId, discount.Name, discount.StartTime.ToString(DATE_TIME_FORMAT),
+                        discount.EndTime.ToString(DATE_TIME_FORMAT), discount.DiscountType,
+                        discount.DiscountPercent, $"{discount.DiscountPriceAmount:N0}"
+                    }
+                );
+            }
         }
 
         private void ShowCustomers(List<Customer> customers)
@@ -112,6 +125,18 @@ namespace SaleManagerProject
                     });
                 }
             }
+            else if (typeof(T) == typeof(Discount))
+            {
+                var discount = item as Discount;
+                _commonController.AddNewItem(_discounts, discount);
+                tblDiscount.Rows.Add(
+                    new object[] {
+                        discount.DiscountId, discount.Name, discount.StartTime.ToString(DATE_TIME_FORMAT),
+                        discount.EndTime.ToString(DATE_TIME_FORMAT), discount.DiscountType,
+                        discount.DiscountPercent, $"{discount.DiscountPriceAmount:N0}"
+                    }
+                );
+            }
         }
 
         public void UpdateItem<T>(T updatedItem)
@@ -159,6 +184,29 @@ namespace SaleManagerProject
                         customer.CreateTime.ToString(DATE_TIME_FORMAT), customer.Email
                     }
                 );
+            }
+            else if (typeof(T) == typeof(Discount))
+            {
+                var discount = updatedItem as Discount;
+                int updatedIndex = -1;
+                if (_actionType == ActionType.NORMAL)
+                {
+                    updatedIndex = _commonController.UpdateItem(_discounts, discount);
+                }
+                else
+                {
+                    updatedIndex = _commonController.UpdateItem(_searchDiscountResults, discount);
+                    _commonController.UpdateItem(_discounts, discount);
+                }
+                tblDiscount.Rows.RemoveAt(updatedIndex);
+                tblDiscount.Rows.Insert(updatedIndex,
+                    new object[] {
+                        discount.DiscountId, discount.Name, discount.StartTime.ToString(DATE_TIME_FORMAT),
+                        discount.EndTime.ToString(DATE_TIME_FORMAT), discount.DiscountType,
+                        discount.DiscountPercent, $"{discount.DiscountPriceAmount:N0}"
+                    }
+                );
+
             }
         }
 
@@ -363,6 +411,10 @@ namespace SaleManagerProject
             {
                 ShowItems(_items);
             }
+            else if (sender.Equals(btnRefreshCustomer))
+            {
+                ShowCustomers(_customers);
+            }
         }
 
         private void BtnAddNewCustomerClick(object sender, EventArgs e)
@@ -413,7 +465,7 @@ namespace SaleManagerProject
             if (radioSortCustomerById.Checked)
             {
                 _commonController.Sort(_customers, _customerController.CompareCustomerById);
-            }   
+            }
             else if (radioSortCustomerByName.Checked)
             {
                 _commonController.Sort(_customers, _customerController.CompareCustomerByName);
@@ -431,6 +483,127 @@ namespace SaleManagerProject
                 _commonController.Sort(_customers, _customerController.CompareCustomerByCreatedDate);
             }
             ShowCustomers(_customers);
+        }
+
+        private void BtnSearchCustomerClick(object sender, EventArgs e)
+        {
+            if (comboSearchCustomer.SelectedIndex == -1)
+            {
+                var title = "Lỗi dữ liệu";
+                var msg = "Vui lòng chọn tiêu chí tìm kiếm trước.";
+                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(txtSearchCustomer.Text))
+            {
+                var title = "Lỗi dữ liệu";
+                var msg = "Vui lòng nhập từ khóa cần tìm kiếm trước.";
+                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                _actionType = ActionType.SEARCH;
+                _searchCustomerResults.Clear();
+                switch (comboSearchCustomer.SelectedIndex)
+                {
+                    case 0:
+                        _searchCustomerResults.AddRange(
+                            _commonController.Search(
+                                _customers,
+                                _customerController.IsCustomerNameMatch,
+                                txtSearchCustomer.Text
+                                )
+                            );
+                        break;
+                    case 1:
+                        _searchCustomerResults.AddRange(
+                           _commonController.Search(
+                               _customers,
+                               _customerController.IsCustomerIdMatch,
+                               txtSearchCustomer.Text
+                               )
+                           );
+                        break;
+                    case 2:
+                        _searchCustomerResults.AddRange(
+                           _commonController.Search(
+                               _customers,
+                               _customerController.IsCustomerTypeMatch,
+                               txtSearchCustomer.Text
+                               )
+                           );
+                        break;
+                    case 3:
+                        _searchCustomerResults.AddRange(
+                           _commonController.Search(
+                               _customers,
+                               _customerController.IsCustomerAddressMatch,
+                               txtSearchCustomer.Text
+                               )
+                           );
+                        break;
+                    case 4:
+                        _searchCustomerResults.AddRange(
+                           _commonController.Search(
+                               _customers,
+                               _customerController.IsCustomerPhoneNumberMatch,
+                               txtSearchCustomer.Text
+                               )
+                           );
+                        break;
+                    default:
+                        break;
+                }
+                ShowCustomers(_searchCustomerResults);
+                if (_searchCustomerResults.Count == 0)
+                {
+                    var title = "Kết quả tìm kiếm";
+                    var msg = "Không tìm thấy kết quả nào.";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void BtnAddNewDiscountClick(object sender, EventArgs e)
+        {
+            var childView = new AddEditDiscountFrm(this);
+            childView.Show();
+        }
+
+        private void BtnDiscountCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == tblDiscount.Columns["tblDiscountColEdit"].Index)
+            {
+                Discount discount = _discounts[e.RowIndex];
+                if (_actionType == ActionType.SEARCH)
+                {
+                    discount = _searchDiscountResults[e.RowIndex];
+                }
+                var updateItemView = new AddEditDiscountFrm(this, discount);
+                updateItemView.Show();
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == tblDiscount.Columns["tblDiscountColRemove"].Index)
+            {
+                var title = "Xác nhận xóa";
+                var msg = "Bạn có chắc chắn muốn xóa bản ghi này không?";
+                var ans = ShowConfirmDialog(msg, title);
+                if (ans == DialogResult.Yes)
+                {
+                    int removedItemIndex = -1;
+                    if (_actionType == ActionType.NORMAL)
+                    {
+                        Discount discount = _discounts[e.RowIndex];
+                        removedItemIndex = _commonController.DeleteItem(_discounts, discount);
+                    }
+                    else if (_actionType == ActionType.SEARCH)
+                    {
+                        Discount discount = _searchDiscountResults[e.RowIndex];
+                        removedItemIndex = _commonController.DeleteItem(_searchDiscountResults, discount);
+                        _commonController.DeleteItem(_discounts, discount);
+                    }
+                    tblDiscount.Rows.RemoveAt(removedItemIndex);
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

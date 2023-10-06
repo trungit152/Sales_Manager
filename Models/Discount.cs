@@ -17,13 +17,18 @@ namespace Models
         public int DiscountPriceAmount { get; set; }
         public int DiscountPercent { get; set; }
         public Discount() { }
-        public Discount(int discountId, string name, DateTime startTime, DateTime endTime, string discountType, int discountPriceAmount, int discountPercent)
+        public Discount(int id)
         {
-            DiscountId = discountId;
+            DiscountId = id > 0 ? id : s_autoId++;
+        }
+        public Discount(int discountId, string name, DateTime startTime,
+            DateTime endTime, string discounType, int discountPriceAmount,
+            int discountPercent) : this(discountId)
+        {
             Name = name;
             StartTime = startTime;
             EndTime = endTime;
-            DiscountType = discountType;
+            DiscountType = discounType;
             DiscountPriceAmount = discountPriceAmount;
             DiscountPercent = discountPercent;
         }

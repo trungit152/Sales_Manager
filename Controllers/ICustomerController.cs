@@ -12,6 +12,12 @@ namespace Controllers
         bool IsNameValid(string name);
         bool IsEmailValid(string email);
         bool IsPhoneValid(string phone);
+        bool IsCustomerNameMatch(Customer customer, string name);
+        bool IsCustomerAddressMatch(Customer customer, string address);
+        bool IsCustomerIdMatch(Customer customer, string id);
+        bool IsCustomerTypeMatch(Customer customer, string type);
+        bool IsCustomerPhoneNumberMatch(Customer customer, string phoneNumber);
+
         int CompareCustomerById(Customer customer1, Customer customer2);
         int CompareCustomerByName(Customer customer1, Customer customer2);
 

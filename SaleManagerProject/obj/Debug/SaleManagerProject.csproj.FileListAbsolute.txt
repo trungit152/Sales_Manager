@@ -16,3 +16,4 @@ C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\S
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.pdb
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.AddEditItemFrm.resources
 C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\CSharpCourseFinalProject.AddEditCustomerFrm.resources
+C:\Users\Phong Vu\source\repos\SaleManagerProject\SaleManagerProject\obj\Debug\SaleManagerProject.AddEditDiscountFrm.resources

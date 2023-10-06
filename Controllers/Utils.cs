@@ -51,5 +51,36 @@ namespace Controllers
                 "Khách mua buôn", 1000, DateTime.Now, "avantamkaka@xmail.com"));
             return customers;
         }
+
+        public static List<Discount> CreateFakeDiscounts()
+        {
+            var dateTimeFormat = "dd/MM/yyyy HH:mm:ss";
+            List<Discount> discounts = new List<Discount>();
+            discounts.Add(new Discount(0, "KM 1/1",
+                DateTime.ParseExact("01/01/2022 01:01:01", dateTimeFormat, null),
+                DateTime.ParseExact("01/01/2022 23:59:59", dateTimeFormat, null),
+                "Giảm giá trực tiếp", 50000, 0));
+            discounts.Add(new Discount(0, "KM 15/1",
+                DateTime.ParseExact("15/01/2022 15:15:15", dateTimeFormat, null),
+                DateTime.ParseExact("15/01/2022 23:59:59", dateTimeFormat, null),
+                "Giảm giá trực tiếp", 50000, 0));
+            discounts.Add(new Discount(0, "KM 2/2",
+                DateTime.ParseExact("02/02/2022 02:02:02", dateTimeFormat, null),
+                DateTime.ParseExact("02/02/2022 23:59:59", dateTimeFormat, null),
+                "Giảm giá trực tiếp", 150000, 0));
+            discounts.Add(new Discount(0, "KM 3/3",
+                DateTime.ParseExact("03/03/2022 03:03:03", dateTimeFormat, null),
+                DateTime.ParseExact("03/03/2022 23:59:59", dateTimeFormat, null),
+                "Phần trăm giá bán", 0, 20));
+            discounts.Add(new Discount(0, "KM 4/4",
+                DateTime.ParseExact("04/04/2022 04:04:04", dateTimeFormat, null),
+                DateTime.ParseExact("04/04/2022 23:59:59", dateTimeFormat, null),
+                "Giảm giá trực tiếp", 50000, 0));
+            discounts.Add(new Discount(0, "KM 5/5",
+                DateTime.ParseExact("05/05/2022 05:05:05", dateTimeFormat, null),
+                DateTime.ParseExact("05/05/2022 23:59:59", dateTimeFormat, null),
+                "Phần trăm giá bán", 0, 30));
+            return discounts;
+        }
     }
 }

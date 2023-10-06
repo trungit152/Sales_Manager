@@ -1,5 +1,7 @@
 ﻿using Models;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
+
 namespace Controllers
 {
     public class CustomerController : ICustomerController
@@ -34,6 +36,41 @@ namespace Controllers
             return customer2.Point.CompareTo(customer1.Point);
         }
 
+        public bool IsCustomerAddressMatch(Customer customer, string address)
+        {
+            var pattern = $".*{address}.*";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(customer.Address);
+        }
+
+        public bool IsCustomerIdMatch(Customer customer, string id)
+        {
+            var pattern = $".*{id}.*";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(customer.PersonId);
+        }
+
+        public bool IsCustomerNameMatch(Customer customer, string name)
+        {
+            var pattern = $".*{name}.*";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(customer.FullName.FirstName);
+        }
+
+        public bool IsCustomerPhoneNumberMatch(Customer customer, string phoneNumber)
+        {
+            var pattern = $".*{phoneNumber}.*";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(customer.PhoneNumber);
+        }
+
+        public bool IsCustomerTypeMatch(Customer customer, string type)
+        {
+            var pattern = $".*{type}.*";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(customer.CustomerType);
+        }
+
         public bool IsEmailValid(string email)
         {
             var pattern = @"^[0-9a-z_]+[a-z0-9.-_]*@[a-z0-9]+.[a-z]{2,4}$";
@@ -47,8 +84,6 @@ namespace Controllers
             var regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
             return regex.IsMatch(name);
         }
-
-
 
         public bool IsPhoneValid(string phone)
         {
