@@ -35,6 +35,7 @@ namespace SaleManagerProject
         private List<Item> _searchItemResults;
         private ActionType _actionType;
         private List<Customer> _searchCustomerResults;
+        private CustomerController _customerController;
         public HomeFrm()
         {
             InitializeComponent();
@@ -44,8 +45,9 @@ namespace SaleManagerProject
             _customers = new List<Customer>();
             _commonController = new CommonController();
             _itemController = new ItemController();
-            _actionType= ActionType.NORMAL;
-            _searchCustomerResults= new List<Customer>();
+            _actionType = ActionType.NORMAL;
+            _searchCustomerResults = new List<Customer>();
+            _customerController = new CustomerController();
             //nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
             _customers.AddRange(Utils.CreateFakeCustomer());
@@ -57,7 +59,7 @@ namespace SaleManagerProject
         private void ShowCustomers(List<Customer> customers)
         {
             tblCustomer.Rows.Clear();
-            foreach (var customer in customers) 
+            foreach (var customer in customers)
             {
                 tblCustomer.Rows.Add(new object[] {
                         customer.PersonId, customer.FullName?.ToString(), customer.BirthDate.ToString(DATE_FORMAT),
@@ -135,7 +137,8 @@ namespace SaleManagerProject
                             newItem.Discount == null ? "-" : newItem.Discount.Name
                         }
                 );
-            } else if(typeof(T) == typeof(Customer)) 
+            }
+            else if (typeof(T) == typeof(Customer))
             {
                 var customer = updatedItem as Customer;
                 int updatedIndex = -1;
@@ -231,7 +234,7 @@ namespace SaleManagerProject
         private void ShowItems(List<Item> items)
         {
             tblItem.Rows.Clear();
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 tblItem.Rows.Add(new object[]
                 {
@@ -405,9 +408,29 @@ namespace SaleManagerProject
             }
         }
 
-        private void HomeFrm_Load(object sender, EventArgs e)
+        private void RadioSortCustomerCheckedChanged(object sender, EventArgs e)
         {
-
+            if (radioSortCustomerById.Checked)
+            {
+                _commonController.Sort(_customers, _customerController.CompareCustomerById);
+            }   
+            else if (radioSortCustomerByName.Checked)
+            {
+                _commonController.Sort(_customers, _customerController.CompareCustomerByName);
+            }
+            else if (radioSortCustomerByPoint.Checked)
+            {
+                _commonController.Sort(_customers, _customerController.CompareCustomerByPointDESC);
+            }
+            else if (radioSortCustomerByBirthDate.Checked)
+            {
+                _commonController.Sort(_customers, _customerController.CompareCustomerByBirthDate);
+            }
+            else if (radioSortCustomerByCreatedDate.Checked)
+            {
+                _commonController.Sort(_customers, _customerController.CompareCustomerByCreatedDate);
+            }
+            ShowCustomers(_customers);
         }
     }
 }

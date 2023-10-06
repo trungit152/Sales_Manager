@@ -46,7 +46,7 @@ namespace Controllers
             customers.Add(new Customer("0123654789128", "Nguyễn Thùy Dung",
                 DateTime.ParseExact("17/09/2000", "dd/MM/yyyy", null), "Thái Bình", "0979123450",
                 "Khách mua lẻ", 100, DateTime.Now, "thuydungnguyen@xmail.com"));
-            customers.Add(new Customer("0123654789128", "Khắc Đức Tâm",
+            customers.Add(new Customer("0123654789130", "Khắc Đức Tâm",
                 DateTime.ParseExact("18/01/2003", "dd/MM/yyyy", null), "Bắc Giang", "0979123450",
                 "Khách mua buôn", 1000, DateTime.Now, "avantamkaka@xmail.com"));
             return customers;
