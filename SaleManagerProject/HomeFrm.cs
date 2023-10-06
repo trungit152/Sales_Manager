@@ -34,6 +34,7 @@ namespace SaleManagerProject
         private ItemController _itemController;
         private List<Item> _searchItemResults;
         private ActionType _actionType;
+        private List<Customer> _searchCustomerResults;
         public HomeFrm()
         {
             InitializeComponent();
@@ -44,15 +45,30 @@ namespace SaleManagerProject
             _commonController = new CommonController();
             _itemController = new ItemController();
             _actionType= ActionType.NORMAL;
+            _searchCustomerResults= new List<Customer>();
             //nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
+            _customers.AddRange(Utils.CreateFakeCustomer());
             //Hien thi
             ShowItems(_items);
+            ShowCustomers(_customers);
+        }
+
+        private void ShowCustomers(List<Customer> customers)
+        {
+            tblCustomer.Rows.Clear();
+            foreach (var customer in customers) 
+            {
+                tblCustomer.Rows.Add(new object[] {
+                        customer.PersonId, customer.FullName?.ToString(), customer.BirthDate.ToString(DATE_FORMAT),
+                        customer.Address, customer.PhoneNumber, customer.CustomerType, $"{customer.Point:N0}",
+                        customer.CreateTime.ToString(DATE_TIME_FORMAT), customer.Email
+                    });
+            }
         }
 
         private void BtnAddNewClick(object sender, EventArgs e)
         {
-            CenterToScreen();
             if (sender.Equals(btnAddNewItem))
             {
                 var childView = new AddEditItemFrm(this, _discounts);
@@ -118,6 +134,27 @@ namespace SaleManagerProject
                             newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyyy"), $"{newItem.Price:N0}",
                             newItem.Discount == null ? "-" : newItem.Discount.Name
                         }
+                );
+            } else if(typeof(T) == typeof(Customer)) 
+            {
+                var customer = updatedItem as Customer;
+                int updatedIndex = -1;
+                if (_actionType == ActionType.NORMAL)
+                {
+                    updatedIndex = _commonController.UpdateItem(_customers, customer);
+                }
+                else
+                {
+                    updatedIndex = _commonController.UpdateItem(_searchCustomerResults, customer);
+                    _commonController.UpdateItem(_customers, customer);
+                }
+                tblCustomer.Rows.RemoveAt(updatedIndex);
+                tblCustomer.Rows.Insert(updatedIndex,
+                    new object[] {
+                        customer.PersonId, customer.FullName?.ToString(), customer.BirthDate.ToString(DATE_FORMAT),
+                        customer.Address, customer.PhoneNumber, customer.CustomerType, $"{customer.Point:N0}",
+                        customer.CreateTime.ToString(DATE_TIME_FORMAT), customer.Email
+                    }
                 );
             }
         }
@@ -203,11 +240,6 @@ namespace SaleManagerProject
                     item.Discount == null ? "-" : item.Discount.Name
                 });
             }
-        }
-
-        private void numericItemFrom_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void ComboSearchItemSelectedIndexChanged(object sender, EventArgs e)
@@ -334,10 +366,46 @@ namespace SaleManagerProject
         {
             var childView = new AddEditCustomerFrm(this, null);
             childView.Show();
-            CenterToParent();
+        }
+        private void TblCustomerCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == tblCustomer.Columns["tblCustomerColEdit"].Index)
+            {
+                Customer customer = _customers[e.RowIndex];
+                if (_actionType == ActionType.SEARCH)
+                {
+                    customer = _searchCustomerResults[e.RowIndex];
+                }
+                var updateItemView = new AddEditCustomerFrm(this, customer);
+                updateItemView.Show();
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == tblCustomer.Columns["tblCustomerColRemove"].Index)
+            {
+                var title = "Xác nhận xóa";
+                var msg = "Bạn có chắc chắn muốn xóa bản ghi này không?";
+                var ans = ShowConfirmDialog(msg, title);
+                if (ans == DialogResult.Yes)
+                {
+                    int removedItemIndex = -1;
+                    if (_actionType == ActionType.NORMAL)
+                    {
+                        Customer customer = _customers[e.RowIndex];
+                        removedItemIndex = _commonController.DeleteItem(_customers, customer);
+                    }
+                    else if (_actionType == ActionType.SEARCH)
+                    {
+                        Customer customer = _searchCustomerResults[e.RowIndex];
+                        removedItemIndex = _commonController.DeleteItem(_searchCustomerResults, customer);
+                        _commonController.DeleteItem(_customers, customer);
+                    }
+                    tblCustomer.Rows.RemoveAt(removedItemIndex);
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
         }
 
-        private void tblCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void HomeFrm_Load(object sender, EventArgs e)
         {
 
         }

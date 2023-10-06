@@ -24,13 +24,32 @@ namespace CSharpCourseFinalProject
             _controller = controller;
             if (customer != null)
             {
+                Text = "SỬA THÔNG TIN KHÁCH HÀNG";
+                btnAddNew.Text = "Cập nhật";
                 ShowCustomerInfo();
             }
         }
 
         private void ShowCustomerInfo()
         {
-            throw new NotImplementedException();
+            txtCustomerId.Text = _customer.PersonId;
+            txtCustomerId.Enabled = false;
+            txtFullName.Text = _customer.FullName.ToString();
+            txtAddress.Text = _customer.Address;
+            txtEmail.Text = _customer.Email;
+            txtPhoneNumber.Text = _customer.PhoneNumber;
+            numericPoint.Value = _customer.Point;
+            datePickerBirthDate.Value = _customer.BirthDate;
+            datePickerCreatedAcc.Value = _customer.CreateTime;
+            datePickerCreatedAcc.Enabled = false;
+            for (int i = 0; i < comboCustomerType.Items.Count; i++)
+            {
+                if (_customer.CustomerType.CompareTo(comboCustomerType.Items[i]) == 0)
+                {
+                    comboCustomerType.SelectedIndex = i;
+                    break;
+                }
+            }
         }
 
         private void ClearCustomerIdHintHandler(object sender, MouseEventArgs e)
@@ -112,9 +131,22 @@ namespace CSharpCourseFinalProject
                 }
                 else
                 {
-                    // update customer info
+                    _customer.Address = txtAddress.Text;
+                    _customer.PhoneNumber = txtPhoneNumber.Text;
+                    _customer.FullName = new FullName(txtFullName.Text);
+                    _customer.Point = (int)numericPoint.Value;
+                    _customer.BirthDate = datePickerBirthDate.Value;
+                    _customer.CustomerType = comboCustomerType.Text;
+                    _customer.Email = txtEmail.Text;
+                    var title = "Xác nhận";
+                    var msg = "Bạn có chắc chắn muốn lưu các thay đổi?";
+                    var ans = ShowConfirmMessage(title, msg);
+                    if (ans == DialogResult.Yes)
+                    {
+                        _controller.UpdateItem(_customer);
+                        Dispose();
+                    }
                 }
-
 
             }
             catch (InvalidNameException ex)

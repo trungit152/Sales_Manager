@@ -19,5 +19,37 @@ namespace Controllers
             items.Add(new Item(0, "Quần short", "Thời trang", 100, "Việt Tiến", DateTime.Now, 125000, null));
             return items;
         }
+        public static List<Customer> CreateFakeCustomer()
+        {
+            List<Customer> customers = new List<Customer>();
+            customers.Add(new Customer("0123654789123", "Trần Trung Dũng",
+                DateTime.ParseExact("12/08/2007", "dd/MM/yyyy", null), "Hà Nội", "0978123456",
+                "Khách mua buôn", 1090, DateTime.Now, "trungdung@xmail.com"));
+            customers.Add(new Customer("0123654789124", "Lê Viết Luân",
+                DateTime.ParseExact("22/09/2007", "dd/MM/yyyy", null), "Hải Dương", "0972183457",
+                "Khách mua lẻ", 180, DateTime.Now, "vietluan@xmail.com"));
+            customers.Add(new Customer("0123654789125", "Trần Thu Hà",
+                DateTime.ParseExact("12/01/2002", "dd/MM/yyyy", null), "Đà Nẵng", "0978143458",
+                "Khách mua buôn", 5000, DateTime.Now, "thuha@xmail.com"));
+            customers.Add(new Customer("0123654789126", "Lê Bá Tuấn",
+                DateTime.ParseExact("16/10/2000", "dd/MM/yyyy", null), "Hồ Chí Minh", "0978173459",
+                "Khách mua lẻ", 200, DateTime.Now, "batuan@xmail.com"));
+            customers.Add(new Customer("0123654789120", "Mai Anh Dũng",
+                DateTime.ParseExact("19/08/2001", "dd/MM/yyyy", null), "Hòa Bình", "0978623466",
+                "Khách mua buôn", 600, DateTime.Now, "anhdunguu@xmail.com"));
+            customers.Add(new Customer("0123654789127", "Ngô Quốc Công",
+                DateTime.ParseExact("22/04/1996", "dd/MM/yyyy", null), "Vũng Tàu", "0978123476",
+                "Khách mua lẻ", 700, DateTime.Now, "quoccong@xmail.com"));
+            customers.Add(new Customer("0123654789129", "Hà Văn Thắng",
+                DateTime.ParseExact("11/05/2000", "dd/MM/yyyy", null), "Nghệ An", "0978193851",
+                "Khách mua lẻ", 400, DateTime.Now, "vanthangha@xmail.com"));
+            customers.Add(new Customer("0123654789128", "Nguyễn Thùy Dung",
+                DateTime.ParseExact("17/09/2000", "dd/MM/yyyy", null), "Thái Bình", "0979123450",
+                "Khách mua lẻ", 100, DateTime.Now, "thuydungnguyen@xmail.com"));
+            customers.Add(new Customer("0123654789128", "Khắc Đức Tâm",
+                DateTime.ParseExact("18/01/2003", "dd/MM/yyyy", null), "Bắc Giang", "0979123450",
+                "Khách mua buôn", 1000, DateTime.Now, "avantamkaka@xmail.com"));
+            return customers;
+        }
     }
 }

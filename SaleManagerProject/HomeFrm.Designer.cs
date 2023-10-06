@@ -38,6 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -46,8 +47,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabItem = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -81,6 +80,7 @@
             this.tblItemEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tblItemRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabCustomer = new System.Windows.Forms.TabPage();
+            this.tblCustomer = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSearchCustomer = new System.Windows.Forms.Button();
             this.txtSearchCustomer = new System.Windows.Forms.TextBox();
@@ -96,18 +96,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnRefreshCustomer = new System.Windows.Forms.Button();
             this.btnAddNewCustomer = new System.Windows.Forms.Button();
-            this.tblCustomer = new System.Windows.Forms.DataGridView();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column28 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column29 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabDiscount = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnSearchDiscount = new System.Windows.Forms.Button();
@@ -151,6 +139,17 @@
             this.label12 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tblStat = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCustomerColEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tblCustomerColRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tab.SuspendLayout();
             this.tabItem.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -160,10 +159,10 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblItem)).BeginInit();
             this.tabCustomer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomer)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblCustomer)).BeginInit();
             this.tabDiscount.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -190,7 +189,7 @@
             this.tab.Name = "tab";
             this.tab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tab.SelectedIndex = 0;
-            this.tab.Size = new System.Drawing.Size(1101, 692);
+            this.tab.Size = new System.Drawing.Size(1373, 692);
             this.tab.TabIndex = 0;
             // 
             // tabItem
@@ -203,7 +202,7 @@
             this.tabItem.Name = "tabItem";
             this.tabItem.Padding = new System.Windows.Forms.Padding(3);
             this.tabItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabItem.Size = new System.Drawing.Size(1093, 660);
+            this.tabItem.Size = new System.Drawing.Size(1365, 660);
             this.tabItem.TabIndex = 0;
             this.tabItem.Text = "QL MẶT HÀNG";
             this.tabItem.UseVisualStyleBackColor = true;
@@ -220,10 +219,10 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.comboSearchItem);
             this.groupBox3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox3.Location = new System.Drawing.Point(729, 465);
+            this.groupBox3.Location = new System.Drawing.Point(915, 465);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox3.Size = new System.Drawing.Size(355, 188);
+            this.groupBox3.Size = new System.Drawing.Size(450, 188);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tìm kiếm";
@@ -232,9 +231,9 @@
             // 
             this.btnSearchItem.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchItem.Image")));
             this.btnSearchItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearchItem.Location = new System.Drawing.Point(113, 143);
+            this.btnSearchItem.Location = new System.Drawing.Point(159, 142);
             this.btnSearchItem.Name = "btnSearchItem";
-            this.btnSearchItem.Size = new System.Drawing.Size(129, 37);
+            this.btnSearchItem.Size = new System.Drawing.Size(133, 38);
             this.btnSearchItem.TabIndex = 8;
             this.btnSearchItem.Text = "Tìm kiếm";
             this.btnSearchItem.UseVisualStyleBackColor = true;
@@ -242,28 +241,27 @@
             // 
             // numericItemTo
             // 
-            this.numericItemTo.Location = new System.Drawing.Point(251, 103);
+            this.numericItemTo.Location = new System.Drawing.Point(292, 101);
             this.numericItemTo.Name = "numericItemTo";
-            this.numericItemTo.Size = new System.Drawing.Size(71, 22);
+            this.numericItemTo.Size = new System.Drawing.Size(84, 22);
             this.numericItemTo.TabIndex = 7;
             // 
             // numericItemFrom
             // 
-            this.numericItemFrom.Location = new System.Drawing.Point(99, 101);
+            this.numericItemFrom.Location = new System.Drawing.Point(140, 101);
             this.numericItemFrom.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             0});
             this.numericItemFrom.Name = "numericItemFrom";
-            this.numericItemFrom.Size = new System.Drawing.Size(71, 22);
+            this.numericItemFrom.Size = new System.Drawing.Size(84, 22);
             this.numericItemFrom.TabIndex = 6;
-            this.numericItemFrom.ValueChanged += new System.EventHandler(this.numericItemFrom_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(204, 105);
+            this.label4.Location = new System.Drawing.Point(243, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 16);
             this.label4.TabIndex = 5;
@@ -271,15 +269,15 @@
             // 
             // txtSearchItem
             // 
-            this.txtSearchItem.Location = new System.Drawing.Point(99, 67);
+            this.txtSearchItem.Location = new System.Drawing.Point(140, 67);
             this.txtSearchItem.Name = "txtSearchItem";
-            this.txtSearchItem.Size = new System.Drawing.Size(223, 22);
+            this.txtSearchItem.Size = new System.Drawing.Size(236, 22);
             this.txtSearchItem.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 103);
+            this.label3.Location = new System.Drawing.Point(74, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 16);
             this.label3.TabIndex = 3;
@@ -288,7 +286,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 67);
+            this.label2.Location = new System.Drawing.Point(74, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 2;
@@ -297,7 +295,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 31);
+            this.label1.Location = new System.Drawing.Point(74, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 1;
@@ -312,9 +310,9 @@
             "Tìm theo loại mặt hàng",
             "Tìm theo hãng sản xuất",
             "Theo số lượng khoảng a-b"});
-            this.comboSearchItem.Location = new System.Drawing.Point(98, 28);
+            this.comboSearchItem.Location = new System.Drawing.Point(140, 28);
             this.comboSearchItem.Name = "comboSearchItem";
-            this.comboSearchItem.Size = new System.Drawing.Size(224, 24);
+            this.comboSearchItem.Size = new System.Drawing.Size(236, 24);
             this.comboSearchItem.TabIndex = 0;
             this.comboSearchItem.SelectedIndexChanged += new System.EventHandler(this.ComboSearchItemSelectedIndexChanged);
             // 
@@ -326,10 +324,10 @@
             this.groupBox2.Controls.Add(this.radioSortItemByPriceDSC);
             this.groupBox2.Controls.Add(this.radioSortItemByPriceASC);
             this.groupBox2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox2.Location = new System.Drawing.Point(368, 466);
+            this.groupBox2.Location = new System.Drawing.Point(461, 465);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox2.Size = new System.Drawing.Size(355, 188);
+            this.groupBox2.Size = new System.Drawing.Size(450, 188);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sắp xếp";
@@ -399,10 +397,10 @@
             this.groupBox1.Controls.Add(this.btnRefreshItem);
             this.groupBox1.Controls.Add(this.btnAddNewItem);
             this.groupBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox1.Location = new System.Drawing.Point(6, 466);
+            this.groupBox1.Location = new System.Drawing.Point(7, 465);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox1.Size = new System.Drawing.Size(355, 188);
+            this.groupBox1.Size = new System.Drawing.Size(450, 188);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hành động";
@@ -411,7 +409,7 @@
             // 
             this.btnRefreshItem.Image = ((System.Drawing.Image)(resources.GetObject("btnRefreshItem.Image")));
             this.btnRefreshItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefreshItem.Location = new System.Drawing.Point(180, 71);
+            this.btnRefreshItem.Location = new System.Drawing.Point(250, 71);
             this.btnRefreshItem.Name = "btnRefreshItem";
             this.btnRefreshItem.Size = new System.Drawing.Size(131, 46);
             this.btnRefreshItem.TabIndex = 1;
@@ -423,7 +421,7 @@
             // 
             this.btnAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNewItem.Image")));
             this.btnAddNewItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddNewItem.Location = new System.Drawing.Point(43, 71);
+            this.btnAddNewItem.Location = new System.Drawing.Point(70, 71);
             this.btnAddNewItem.Name = "btnAddNewItem";
             this.btnAddNewItem.Size = new System.Drawing.Size(131, 46);
             this.btnAddNewItem.TabIndex = 0;
@@ -457,11 +455,11 @@
             this.Column18,
             this.tblItemEdit,
             this.tblItemRemove});
-            this.tblItem.Location = new System.Drawing.Point(6, 6);
+            this.tblItem.Location = new System.Drawing.Point(7, 0);
             this.tblItem.Name = "tblItem";
             this.tblItem.RowHeadersWidth = 51;
             this.tblItem.RowTemplate.Height = 24;
-            this.tblItem.Size = new System.Drawing.Size(1081, 453);
+            this.tblItem.Size = new System.Drawing.Size(1362, 453);
             this.tblItem.TabIndex = 0;
             this.tblItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblItemCellClick);
             // 
@@ -469,6 +467,7 @@
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column11.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column11.FillWeight = 106.9519F;
             this.Column11.HeaderText = "Mã MH";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
@@ -476,6 +475,7 @@
             // 
             // Column12
             // 
+            this.Column12.FillWeight = 99.22757F;
             this.Column12.HeaderText = "Tên MH";
             this.Column12.MinimumWidth = 6;
             this.Column12.Name = "Column12";
@@ -485,6 +485,7 @@
             // 
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column13.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column13.FillWeight = 99.22757F;
             this.Column13.HeaderText = "Loại MH";
             this.Column13.MinimumWidth = 6;
             this.Column13.Name = "Column13";
@@ -494,6 +495,7 @@
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column14.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column14.FillWeight = 99.22757F;
             this.Column14.HeaderText = "Số lượng";
             this.Column14.MinimumWidth = 6;
             this.Column14.Name = "Column14";
@@ -503,6 +505,7 @@
             // 
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column15.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column15.FillWeight = 99.22757F;
             this.Column15.HeaderText = "Hãng SX";
             this.Column15.MinimumWidth = 6;
             this.Column15.Name = "Column15";
@@ -512,6 +515,7 @@
             // 
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column16.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column16.FillWeight = 99.22757F;
             this.Column16.HeaderText = "Ngày SX";
             this.Column16.MinimumWidth = 6;
             this.Column16.Name = "Column16";
@@ -521,6 +525,7 @@
             // 
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column17.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Column17.FillWeight = 99.22757F;
             this.Column17.HeaderText = "Giá bán";
             this.Column17.MinimumWidth = 6;
             this.Column17.Name = "Column17";
@@ -530,6 +535,7 @@
             // 
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column18.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Column18.FillWeight = 99.22757F;
             this.Column18.HeaderText = "Khuyến mãi";
             this.Column18.MinimumWidth = 6;
             this.Column18.Name = "Column18";
@@ -537,15 +543,18 @@
             // 
             // tblItemEdit
             // 
+            this.tblItemEdit.FillWeight = 99.22757F;
             this.tblItemEdit.HeaderText = "Sửa";
             this.tblItemEdit.MinimumWidth = 6;
             this.tblItemEdit.Name = "tblItemEdit";
             this.tblItemEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.tblItemEdit.Text = "Sửa";
+            this.tblItemEdit.ToolTipText = "Sửa";
             this.tblItemEdit.UseColumnTextForButtonValue = true;
             // 
             // tblItemRemove
             // 
+            this.tblItemRemove.FillWeight = 99.22757F;
             this.tblItemRemove.HeaderText = "Xóa";
             this.tblItemRemove.MinimumWidth = 6;
             this.tblItemRemove.Name = "tblItemRemove";
@@ -555,17 +564,53 @@
             // 
             // tabCustomer
             // 
+            this.tabCustomer.Controls.Add(this.tblCustomer);
             this.tabCustomer.Controls.Add(this.groupBox4);
             this.tabCustomer.Controls.Add(this.groupBox5);
             this.tabCustomer.Controls.Add(this.groupBox6);
-            this.tabCustomer.Controls.Add(this.tblCustomer);
             this.tabCustomer.Location = new System.Drawing.Point(4, 28);
             this.tabCustomer.Name = "tabCustomer";
             this.tabCustomer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCustomer.Size = new System.Drawing.Size(1093, 660);
+            this.tabCustomer.Size = new System.Drawing.Size(1365, 660);
             this.tabCustomer.TabIndex = 1;
             this.tabCustomer.Text = "QL KHÁCH HÀNG";
             this.tabCustomer.UseVisualStyleBackColor = true;
+            // 
+            // tblCustomer
+            // 
+            this.tblCustomer.AllowUserToAddRows = false;
+            this.tblCustomer.AllowUserToDeleteRows = false;
+            this.tblCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tblCustomer.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.tblCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.Column19,
+            this.tblCustomerColEdit,
+            this.tblCustomerColRemove});
+            this.tblCustomer.Location = new System.Drawing.Point(3, 3);
+            this.tblCustomer.Name = "tblCustomer";
+            this.tblCustomer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tblCustomer.RowHeadersWidth = 51;
+            this.tblCustomer.RowTemplate.Height = 24;
+            this.tblCustomer.Size = new System.Drawing.Size(1359, 453);
+            this.tblCustomer.TabIndex = 7;
+            this.tblCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblCustomerCellClick);
             // 
             // groupBox4
             // 
@@ -575,10 +620,10 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.comboSearchCustomer);
             this.groupBox4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox4.Location = new System.Drawing.Point(753, 465);
+            this.groupBox4.Location = new System.Drawing.Point(912, 464);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox4.Size = new System.Drawing.Size(331, 188);
+            this.groupBox4.Size = new System.Drawing.Size(450, 188);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tìm kiếm";
@@ -587,24 +632,24 @@
             // 
             this.btnSearchCustomer.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchCustomer.Image")));
             this.btnSearchCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearchCustomer.Location = new System.Drawing.Point(112, 133);
+            this.btnSearchCustomer.Location = new System.Drawing.Point(156, 127);
             this.btnSearchCustomer.Name = "btnSearchCustomer";
-            this.btnSearchCustomer.Size = new System.Drawing.Size(129, 37);
+            this.btnSearchCustomer.Size = new System.Drawing.Size(139, 44);
             this.btnSearchCustomer.TabIndex = 8;
             this.btnSearchCustomer.Text = "Tìm kiếm";
             this.btnSearchCustomer.UseVisualStyleBackColor = true;
             // 
             // txtSearchCustomer
             // 
-            this.txtSearchCustomer.Location = new System.Drawing.Point(87, 83);
+            this.txtSearchCustomer.Location = new System.Drawing.Point(137, 83);
             this.txtSearchCustomer.Name = "txtSearchCustomer";
-            this.txtSearchCustomer.Size = new System.Drawing.Size(223, 22);
+            this.txtSearchCustomer.Size = new System.Drawing.Size(242, 22);
             this.txtSearchCustomer.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 83);
+            this.label7.Location = new System.Drawing.Point(71, 83);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 16);
             this.label7.TabIndex = 2;
@@ -613,7 +658,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 47);
+            this.label8.Location = new System.Drawing.Point(71, 47);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 16);
             this.label8.TabIndex = 1;
@@ -628,9 +673,9 @@
             "Loại khách hàng.",
             "Địa chỉ.",
             "Số điện thoại."});
-            this.comboSearchCustomer.Location = new System.Drawing.Point(86, 44);
+            this.comboSearchCustomer.Location = new System.Drawing.Point(136, 44);
             this.comboSearchCustomer.Name = "comboSearchCustomer";
-            this.comboSearchCustomer.Size = new System.Drawing.Size(224, 24);
+            this.comboSearchCustomer.Size = new System.Drawing.Size(243, 24);
             this.comboSearchCustomer.TabIndex = 0;
             // 
             // groupBox5
@@ -641,10 +686,10 @@
             this.groupBox5.Controls.Add(this.radioButton9);
             this.groupBox5.Controls.Add(this.radioButton10);
             this.groupBox5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox5.Location = new System.Drawing.Point(368, 466);
+            this.groupBox5.Location = new System.Drawing.Point(458, 464);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox5.Size = new System.Drawing.Size(379, 188);
+            this.groupBox5.Size = new System.Drawing.Size(450, 188);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Sắp xếp";
@@ -652,7 +697,7 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(200, 90);
+            this.radioButton6.Location = new System.Drawing.Point(236, 90);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(140, 20);
             this.radioButton6.TabIndex = 4;
@@ -663,7 +708,7 @@
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(200, 36);
+            this.radioButton7.Location = new System.Drawing.Point(236, 36);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(157, 20);
             this.radioButton7.TabIndex = 3;
@@ -674,7 +719,7 @@
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(21, 142);
+            this.radioButton8.Location = new System.Drawing.Point(57, 142);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(143, 20);
             this.radioButton8.TabIndex = 2;
@@ -686,7 +731,7 @@
             // radioButton9
             // 
             this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(21, 90);
+            this.radioButton9.Location = new System.Drawing.Point(57, 90);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(148, 20);
             this.radioButton9.TabIndex = 1;
@@ -697,7 +742,7 @@
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(21, 36);
+            this.radioButton10.Location = new System.Drawing.Point(57, 36);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(174, 20);
             this.radioButton10.TabIndex = 0;
@@ -710,10 +755,10 @@
             this.groupBox6.Controls.Add(this.btnRefreshCustomer);
             this.groupBox6.Controls.Add(this.btnAddNewCustomer);
             this.groupBox6.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox6.Location = new System.Drawing.Point(6, 466);
+            this.groupBox6.Location = new System.Drawing.Point(3, 464);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox6.Size = new System.Drawing.Size(355, 188);
+            this.groupBox6.Size = new System.Drawing.Size(450, 188);
             this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Hành động";
@@ -722,7 +767,7 @@
             // 
             this.btnRefreshCustomer.Image = ((System.Drawing.Image)(resources.GetObject("btnRefreshCustomer.Image")));
             this.btnRefreshCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefreshCustomer.Location = new System.Drawing.Point(180, 71);
+            this.btnRefreshCustomer.Location = new System.Drawing.Point(252, 71);
             this.btnRefreshCustomer.Name = "btnRefreshCustomer";
             this.btnRefreshCustomer.Size = new System.Drawing.Size(131, 46);
             this.btnRefreshCustomer.TabIndex = 1;
@@ -733,139 +778,13 @@
             // 
             this.btnAddNewCustomer.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNewCustomer.Image")));
             this.btnAddNewCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddNewCustomer.Location = new System.Drawing.Point(43, 71);
+            this.btnAddNewCustomer.Location = new System.Drawing.Point(68, 71);
             this.btnAddNewCustomer.Name = "btnAddNewCustomer";
             this.btnAddNewCustomer.Size = new System.Drawing.Size(131, 46);
             this.btnAddNewCustomer.TabIndex = 0;
             this.btnAddNewCustomer.Text = "Thêm mới";
             this.btnAddNewCustomer.UseVisualStyleBackColor = true;
             this.btnAddNewCustomer.Click += new System.EventHandler(this.BtnAddNewCustomerClick);
-            // 
-            // tblCustomer
-            // 
-            this.tblCustomer.AllowUserToAddRows = false;
-            this.tblCustomer.AllowUserToDeleteRows = false;
-            this.tblCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.tblCustomer.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.tblCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column19,
-            this.Column20,
-            this.Column21,
-            this.Column22,
-            this.Column23,
-            this.Column24,
-            this.Column25,
-            this.Column26,
-            this.Column27,
-            this.Column28,
-            this.Column29});
-            this.tblCustomer.Location = new System.Drawing.Point(6, 6);
-            this.tblCustomer.Name = "tblCustomer";
-            this.tblCustomer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tblCustomer.RowHeadersWidth = 51;
-            this.tblCustomer.RowTemplate.Height = 24;
-            this.tblCustomer.Size = new System.Drawing.Size(1081, 453);
-            this.tblCustomer.TabIndex = 3;
-            this.tblCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCustomer_CellContentClick);
-            // 
-            // Column19
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column19.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Column19.HeaderText = "Mã KH";
-            this.Column19.MinimumWidth = 6;
-            this.Column19.Name = "Column19";
-            this.Column19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column20
-            // 
-            this.Column20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column20.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Column20.HeaderText = "Họ tên";
-            this.Column20.MinimumWidth = 6;
-            this.Column20.Name = "Column20";
-            this.Column20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column21
-            // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column21.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Column21.HeaderText = "Ngày sinh";
-            this.Column21.MinimumWidth = 6;
-            this.Column21.Name = "Column21";
-            this.Column21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column22
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column22.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Column22.HeaderText = "Địa chỉ";
-            this.Column22.MinimumWidth = 6;
-            this.Column22.Name = "Column22";
-            this.Column22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column23
-            // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column23.DefaultCellStyle = dataGridViewCellStyle13;
-            this.Column23.HeaderText = "SĐT";
-            this.Column23.MinimumWidth = 6;
-            this.Column23.Name = "Column23";
-            this.Column23.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column24
-            // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column24.DefaultCellStyle = dataGridViewCellStyle14;
-            this.Column24.HeaderText = "Loại KH";
-            this.Column24.MinimumWidth = 6;
-            this.Column24.Name = "Column24";
-            this.Column24.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column25
-            // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column25.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Column25.HeaderText = "Điểm TL";
-            this.Column25.MinimumWidth = 6;
-            this.Column25.Name = "Column25";
-            this.Column25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column26
-            // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column26.DefaultCellStyle = dataGridViewCellStyle16;
-            this.Column26.HeaderText = "Ngày tạo TK";
-            this.Column26.MinimumWidth = 6;
-            this.Column26.Name = "Column26";
-            this.Column26.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column27
-            // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column27.DefaultCellStyle = dataGridViewCellStyle17;
-            this.Column27.HeaderText = "Email";
-            this.Column27.MinimumWidth = 6;
-            this.Column27.Name = "Column27";
-            this.Column27.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column28
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column28.DefaultCellStyle = dataGridViewCellStyle18;
-            this.Column28.HeaderText = "Sửa";
-            this.Column28.MinimumWidth = 6;
-            this.Column28.Name = "Column28";
-            this.Column28.Text = "Sửa";
-            // 
-            // Column29
-            // 
-            this.Column29.HeaderText = "Xóa";
-            this.Column29.MinimumWidth = 6;
-            this.Column29.Name = "Column29";
-            this.Column29.Text = "Xóa";
             // 
             // tabDiscount
             // 
@@ -875,7 +794,7 @@
             this.tabDiscount.Location = new System.Drawing.Point(4, 28);
             this.tabDiscount.Name = "tabDiscount";
             this.tabDiscount.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDiscount.Size = new System.Drawing.Size(1093, 660);
+            this.tabDiscount.Size = new System.Drawing.Size(1365, 660);
             this.tabDiscount.TabIndex = 2;
             this.tabDiscount.Text = "QL KHUYẾN MÃI";
             this.tabDiscount.UseVisualStyleBackColor = true;
@@ -1001,7 +920,7 @@
             this.tabBill.Location = new System.Drawing.Point(4, 28);
             this.tabBill.Name = "tabBill";
             this.tabBill.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBill.Size = new System.Drawing.Size(1093, 660);
+            this.tabBill.Size = new System.Drawing.Size(1365, 660);
             this.tabBill.TabIndex = 3;
             this.tabBill.Text = "QL HÓA ĐƠN";
             this.tabBill.UseVisualStyleBackColor = true;
@@ -1184,14 +1103,14 @@
             this.tblBill.AllowUserToAddRows = false;
             this.tblBill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblBill.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblBill.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblBill.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.tblBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblBill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1279,7 +1198,7 @@
             this.tabStat.Location = new System.Drawing.Point(4, 28);
             this.tabStat.Name = "tabStat";
             this.tabStat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStat.Size = new System.Drawing.Size(1093, 660);
+            this.tabStat.Size = new System.Drawing.Size(1365, 660);
             this.tabStat.TabIndex = 4;
             this.tabStat.Text = "THỐNG KÊ";
             this.tabStat.UseVisualStyleBackColor = true;
@@ -1332,11 +1251,119 @@
             this.tblStat.Size = new System.Drawing.Size(1081, 453);
             this.tblStat.TabIndex = 7;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn1.FillWeight = 115.5392F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã KH";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 147.0588F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Họ Tên";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn3.FillWeight = 86.00414F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Ngày sinh";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn4.FillWeight = 86.00414F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn5.FillWeight = 86.00414F;
+            this.dataGridViewTextBoxColumn5.HeaderText = "SĐT";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn6.FillWeight = 86.00414F;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Loại KH";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn7.FillWeight = 86.00414F;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Điểm tích lũy";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn8.FillWeight = 86.00414F;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Ngày tạo TK";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column19
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column19.DefaultCellStyle = dataGridViewCellStyle17;
+            this.Column19.FillWeight = 149.369F;
+            this.Column19.HeaderText = "Email";
+            this.Column19.MinimumWidth = 6;
+            this.Column19.Name = "Column19";
+            // 
+            // tblCustomerColEdit
+            // 
+            this.tblCustomerColEdit.FillWeight = 86.00414F;
+            this.tblCustomerColEdit.HeaderText = "Sửa";
+            this.tblCustomerColEdit.MinimumWidth = 6;
+            this.tblCustomerColEdit.Name = "tblCustomerColEdit";
+            this.tblCustomerColEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblCustomerColEdit.Text = "Sửa";
+            this.tblCustomerColEdit.ToolTipText = "Sửa";
+            this.tblCustomerColEdit.UseColumnTextForButtonValue = true;
+            // 
+            // tblCustomerColRemove
+            // 
+            this.tblCustomerColRemove.FillWeight = 86.00414F;
+            this.tblCustomerColRemove.HeaderText = "Xóa";
+            this.tblCustomerColRemove.MinimumWidth = 6;
+            this.tblCustomerColRemove.Name = "tblCustomerColRemove";
+            this.tblCustomerColRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblCustomerColRemove.Text = "Xóa";
+            this.tblCustomerColRemove.UseColumnTextForButtonValue = true;
+            // 
             // HomeFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1102, 693);
+            this.ClientSize = new System.Drawing.Size(1377, 693);
             this.Controls.Add(this.tab);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1344,6 +1371,7 @@
             this.MinimizeBox = false;
             this.Name = "HomeFrm";
             this.Text = "Quản lý bán hàng";
+            this.Load += new System.EventHandler(this.HomeFrm_Load);
             this.tab.ResumeLayout(false);
             this.tabItem.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -1355,12 +1383,12 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblItem)).EndInit();
             this.tabCustomer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tblCustomer)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tblCustomer)).EndInit();
             this.tabDiscount.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -1424,7 +1452,6 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button btnRefreshCustomer;
         private System.Windows.Forms.Button btnAddNewCustomer;
-        private System.Windows.Forms.DataGridView tblCustomer;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnSearchDiscount;
         private System.Windows.Forms.TextBox txtSearchDiscount;
@@ -1465,6 +1492,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewButtonColumn Column10;
+        private System.Windows.Forms.DataGridView tblCustomer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
@@ -1475,17 +1503,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.DataGridViewButtonColumn tblItemEdit;
         private System.Windows.Forms.DataGridViewButtonColumn tblItemRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column27;
-        private System.Windows.Forms.DataGridViewButtonColumn Column28;
-        private System.Windows.Forms.DataGridViewButtonColumn Column29;
+        private System.Windows.Forms.DataGridViewButtonColumn tblCustomerColEdit;
+        private System.Windows.Forms.DataGridViewButtonColumn tblCustomerColRemove;
     }
 }
 
