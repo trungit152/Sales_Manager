@@ -35,6 +35,26 @@ namespace Controllers
             return item2.Quantity.CompareTo(item1.Quantity);
         }
 
+        public string GetDiscountName(Discount discount)
+        {
+            if (discount == null)
+            {
+                return "-";
+            }
+            else
+            {
+                var currentTime = DateTime.Now;
+                if (currentTime >= discount.StartTime && currentTime <= discount.EndTime)
+                {
+                    return discount.Name;
+                }
+                else
+                {
+                    return "-";
+                }
+            }
+        }
+
         public bool IsItemBrandMatch(Item item, string brand)
         {
             var pattern = $".*{brand}.*";

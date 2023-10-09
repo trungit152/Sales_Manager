@@ -21,11 +21,11 @@ namespace SaleManagerProject
             InitializeComponent();
             CenterToParent();
         }
-        public AddEditItemFrm(IViewController masterView ,List<Discount> discounts, Item item = null) : this()
+        public AddEditItemFrm(IViewController masterView, List<Discount> discounts, Item item = null) : this()
         {
-            _discounts= discounts;
+            _discounts = discounts;
             _controller = masterView;
-            
+            ShowDiscounts(_discounts);
             if (item != null)
             {
                 Text = "CẬP NHẬT THÔNG TIN MẶT HÀNG";
@@ -35,39 +35,43 @@ namespace SaleManagerProject
             }
         }
 
+        private void ShowDiscounts(List<Discount> discounts)
+        {
+            List<string> discountList = new List<string>();
+            foreach (var discount in discounts)
+            {
+                discountList.Add(discount.Name);
+            }
+            comboDiscount.DataSource = discountList;
+            comboDiscount.SelectedIndex = -1;
+        }
+
         private void ShowItemData()
         {
             txtId.Text = $"{_item.ItemId}";
             txtItemName.Text = _item.ItemName;
             txtBrand.Text = _item.Brand;
-            numericQuantity.Value= _item.Quantity;
-            numericPrice.Value= _item.Price;
-            comboItemType.Text= _item.ItemType;
+            numericQuantity.Value = _item.Quantity;
+            numericPrice.Value = _item.Price;
+            comboItemType.Text = _item.ItemType;
             for (int i = 0; i < comboDiscount.Items.Count; i++)
             {
                 if (_item.Discount?.Name.CompareTo(comboDiscount.Items[i]) == 0)
                 {
-                    comboDiscount.SelectedIndex = i; 
+                    comboDiscount.SelectedIndex = i;
+                    break;
+                }
+            }
+            for (int i = 0; i < comboDiscount.Items.Count; i++)
+            {
+                if (_item.Discount?.Name.CompareTo(comboDiscount.Items[i]) == 0)
+                {
+                    comboDiscount.SelectedIndex = i;
                     break;
                 }
             }
 
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }     
         private void BtnAddItemClick(object sender, EventArgs e)
         {
             var id = int.Parse(txtId.Text);
@@ -78,7 +82,7 @@ namespace SaleManagerProject
             var brand = txtBrand.Text;
             var manufactureDate = datePickerReleaseDate.Value;
             Discount discount = null;
-            if(comboDiscount.SelectedIndex > -1)
+            if (comboDiscount.SelectedIndex > -1)
             {
                 discount = _discounts[comboDiscount.SelectedIndex];
 
@@ -98,24 +102,24 @@ namespace SaleManagerProject
                 }
                 Item item = new Item(id, itemName, itemType, quantity, brand, manufactureDate, itemPrice, discount);
                 //
-                if(btnAddNew.Text.CompareTo("Cập nhật") == 0)
+                if (btnAddNew.Text.CompareTo("Cập nhật") == 0)
                 {
                     _item.ItemName = itemName;
                     _item.ItemType = itemType;
                     _item.Quantity = quantity;
                     _item.Brand = brand;
                     _item.Price = itemPrice;
-                    _item.Discount= discount;
-                    _item.ReleaseDate= manufactureDate;
+                    _item.Discount = discount;
+                    _item.ReleaseDate = manufactureDate;
                     var msg = "Bạn có chắc chắn muốn cập nhật?";
-                    var title = "Xác nhận"; 
+                    var title = "Xác nhận";
                     var ans = ShowConfirmMessage(title, msg);
-                    if(ans == DialogResult.Yes) 
+                    if (ans == DialogResult.Yes)
                     {
                         _controller.UpdateItem(_item);
                         Dispose();
                     }
-                    
+
                 }
                 else
                 {
@@ -131,10 +135,10 @@ namespace SaleManagerProject
         private void BtnCancelClick(object sender, EventArgs e)
         {
             var ans = ShowConfirmMessage("Xác nhận", "Bạn muốn hủy?");
-            if(ans == DialogResult.Yes)
+            if (ans == DialogResult.Yes)
             {
                 Dispose();
-            }            
+            }
         }
 
         private DialogResult ShowConfirmMessage(string v1, string v2)

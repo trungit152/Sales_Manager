@@ -31,6 +31,7 @@ namespace SaleManagerProject
         private List<Customer> _searchCustomerResults;
         private CustomerController _customerController;
         private List<Discount> _searchDiscountResults;
+        private IDiscountController _discountController;
         public HomeFrm()
         {
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace SaleManagerProject
             _actionType = ActionType.NORMAL;
             _searchCustomerResults = new List<Customer>();
             _customerController = new CustomerController();
+            _discountController = new DiscountController();
             //nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
             _customers.AddRange(Utils.CreateFakeCustomer());
@@ -51,10 +53,10 @@ namespace SaleManagerProject
             //Hien thi
             ShowItems(_items);
             ShowCustomers(_customers);
-            ShowDiscount(_discounts);
+            ShowDiscounts(_discounts);
         }
 
-        private void ShowDiscount(List<Discount> discounts)
+        private void ShowDiscounts(List<Discount> discounts)
         {
             tblDiscount.Rows.Clear();
             foreach (var discount in discounts)
@@ -101,7 +103,7 @@ namespace SaleManagerProject
                 {
                     newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
                     newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyyy"), $"{newItem.Price:N0}",
-                    newItem.Discount == null ? "-" : newItem.Discount.Name
+                    _itemController.GetDiscountName(newItem.Discount)
                 });
             }
             else if (typeof(T) == typeof(Customer))
@@ -159,7 +161,7 @@ namespace SaleManagerProject
                     new object[] {
                             newItem.ItemId, newItem.ItemName, newItem.ItemType, newItem.Quantity,
                             newItem.Brand, newItem.ReleaseDate.ToString("dd/MM/yyyy"), $"{newItem.Price:N0}",
-                            newItem.Discount == null ? "-" : newItem.Discount.Name
+                            _itemController.GetDiscountName(newItem.Discount)
                         }
                 );
             }
@@ -415,6 +417,10 @@ namespace SaleManagerProject
             {
                 ShowCustomers(_customers);
             }
+            else if (sender.Equals(btnRefreshDiscount)){
+                ShowDiscounts(_discounts);
+            }
+            
         }
 
         private void BtnAddNewCustomerClick(object sender, EventArgs e)
@@ -604,6 +610,71 @@ namespace SaleManagerProject
                     MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void BtnSearchDiscountClick(object sender, EventArgs e)
+        {
+            if (comboSearchDiscount.SelectedIndex == -1)
+            {
+                var title = "Lỗi tìm kiếm";
+                var message = "Vui lòng chọn tiêu chí tìm kiếm trước.";
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(txtSearchDiscount.Text))
+            {
+                var title = "Lỗi tìm kiếm";
+                var message = "Vui lòng nhập giá trị cần tìm trước.";
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var key = txtSearchDiscount.Text;
+                _actionType = ActionType.SEARCH;
+                _searchDiscountResults.Clear();
+                switch (comboSearchDiscount.SelectedIndex)
+                {
+                    case 0:
+                        _searchDiscountResults.AddRange(
+                            _commonController.Search(
+                                _discounts,
+                                _discountController.IsStartTimeMatch,
+                                key
+                                )
+                            );
+                        break;
+                    case 1:
+                        _searchDiscountResults.AddRange(
+                            _commonController.Search(
+                                _discounts,
+                                _discountController.IsEndTimeMatch,
+                                key
+                                )
+                            );
+                        break;
+                    case 2:
+                        _searchDiscountResults.AddRange(
+                             _commonController.Search(
+                                 _discounts,
+                                 _discountController.IsDiscountNameMatch,
+                                 key
+                                 )
+                             );
+                        break;
+                }
+            }
+            ShowDiscounts(_searchDiscountResults);
+            if (_searchDiscountResults.Count == 0)
+            {
+                var title = "Kết quả tìm kiếm";
+                var msg = "Không tìm thấy kết quả nào.";
+                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnAddNewBillClick(object sender, EventArgs e)
+        {
+            var createBillView = new AddEditBillFrm();
+            createBillView.ShowDialog();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace SaleManagerProject
         public AddEditBillFrm()
         {
             InitializeComponent();
+            CenterToParent();
         }
     }
 }

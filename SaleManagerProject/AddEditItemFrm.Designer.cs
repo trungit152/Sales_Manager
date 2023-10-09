@@ -59,7 +59,6 @@
             this.label1.Size = new System.Drawing.Size(111, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã mặt hàng:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -69,7 +68,6 @@
             this.label2.Size = new System.Drawing.Size(116, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên mặt hàng:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
