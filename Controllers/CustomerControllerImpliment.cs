@@ -53,7 +53,7 @@ namespace Controllers
         public bool IsCustomerNameMatch(Customer customer, string name)
         {
             var pattern = $".*{name}.*";
-            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             return regex.IsMatch(customer.FullName.FirstName);
         }
 

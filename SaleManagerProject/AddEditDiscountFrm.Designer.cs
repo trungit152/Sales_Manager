@@ -55,7 +55,7 @@
             this.label1.Location = new System.Drawing.Point(45, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 20);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 10;
             this.label1.Text = "Mã khuyến mãi:";
             // 
             // label2
@@ -64,7 +64,7 @@
             this.label2.Location = new System.Drawing.Point(45, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 20);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 10;
             this.label2.Text = "Tên khuyến mãi:";
             // 
             // label3
@@ -73,7 +73,7 @@
             this.label3.Location = new System.Drawing.Point(45, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 20);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 10;
             this.label3.Text = "Bắt đầu:";
             // 
             // label4
@@ -82,7 +82,7 @@
             this.label4.Location = new System.Drawing.Point(45, 193);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 20);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 10;
             this.label4.Text = "Kết thúc:";
             // 
             // label5
@@ -91,7 +91,7 @@
             this.label5.Location = new System.Drawing.Point(45, 240);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(135, 20);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 10;
             this.label5.Text = "Loại khuyến mãi:";
             // 
             // btnAddNew
@@ -101,7 +101,7 @@
             this.btnAddNew.Location = new System.Drawing.Point(96, 410);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(137, 45);
-            this.btnAddNew.TabIndex = 5;
+            this.btnAddNew.TabIndex = 8;
             this.btnAddNew.Text = "Thêm mới";
             this.btnAddNew.UseVisualStyleBackColor = true;
             this.btnAddNew.Click += new System.EventHandler(this.BtnAddEditClick);
@@ -113,7 +113,7 @@
             this.btnCancel.Location = new System.Drawing.Point(299, 410);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(137, 45);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Hủy bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
@@ -124,7 +124,7 @@
             this.txtDiscountId.Location = new System.Drawing.Point(219, 45);
             this.txtDiscountId.Name = "txtDiscountId";
             this.txtDiscountId.Size = new System.Drawing.Size(269, 27);
-            this.txtDiscountId.TabIndex = 7;
+            this.txtDiscountId.TabIndex = 1;
             this.txtDiscountId.Text = "0";
             // 
             // label6
@@ -133,7 +133,7 @@
             this.label6.Location = new System.Drawing.Point(45, 287);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(159, 20);
-            this.label6.TabIndex = 8;
+            this.label6.TabIndex = 10;
             this.label6.Text = "Phần trăm giá giảm:";
             // 
             // label7
@@ -142,7 +142,7 @@
             this.label7.Location = new System.Drawing.Point(45, 334);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(149, 20);
-            this.label7.TabIndex = 9;
+            this.label7.TabIndex = 10;
             this.label7.Text = "Giá trị khuyến mãi:";
             // 
             // txtDiscountName
@@ -150,7 +150,7 @@
             this.txtDiscountName.Location = new System.Drawing.Point(219, 92);
             this.txtDiscountName.Name = "txtDiscountName";
             this.txtDiscountName.Size = new System.Drawing.Size(269, 27);
-            this.txtDiscountName.TabIndex = 10;
+            this.txtDiscountName.TabIndex = 2;
             // 
             // dtPickerStart
             // 
@@ -159,7 +159,7 @@
             this.dtPickerStart.Location = new System.Drawing.Point(219, 143);
             this.dtPickerStart.Name = "dtPickerStart";
             this.dtPickerStart.Size = new System.Drawing.Size(269, 27);
-            this.dtPickerStart.TabIndex = 11;
+            this.dtPickerStart.TabIndex = 3;
             // 
             // dtPickerEnd
             // 
@@ -168,7 +168,7 @@
             this.dtPickerEnd.Location = new System.Drawing.Point(219, 186);
             this.dtPickerEnd.Name = "dtPickerEnd";
             this.dtPickerEnd.Size = new System.Drawing.Size(269, 27);
-            this.dtPickerEnd.TabIndex = 12;
+            this.dtPickerEnd.TabIndex = 4;
             // 
             // comboDiscountType
             // 
@@ -180,14 +180,14 @@
             this.comboDiscountType.Location = new System.Drawing.Point(219, 235);
             this.comboDiscountType.Name = "comboDiscountType";
             this.comboDiscountType.Size = new System.Drawing.Size(269, 28);
-            this.comboDiscountType.TabIndex = 13;
+            this.comboDiscountType.TabIndex = 5;
             // 
             // numericDiscountPercent
             // 
             this.numericDiscountPercent.Location = new System.Drawing.Point(219, 284);
             this.numericDiscountPercent.Name = "numericDiscountPercent";
             this.numericDiscountPercent.Size = new System.Drawing.Size(269, 27);
-            this.numericDiscountPercent.TabIndex = 14;
+            this.numericDiscountPercent.TabIndex = 6;
             // 
             // numericDiscountAmount
             // 
@@ -199,7 +199,7 @@
             0});
             this.numericDiscountAmount.Name = "numericDiscountAmount";
             this.numericDiscountAmount.Size = new System.Drawing.Size(269, 27);
-            this.numericDiscountAmount.TabIndex = 15;
+            this.numericDiscountAmount.TabIndex = 7;
             // 
             // AddEditDiscountFrm
             // 

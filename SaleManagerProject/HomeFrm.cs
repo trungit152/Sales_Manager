@@ -673,7 +673,7 @@ namespace SaleManagerProject
 
         private void BtnAddNewBillClick(object sender, EventArgs e)
         {
-            var createBillView = new AddEditBillFrm();
+            var createBillView = new AddEditBillFrm(this, _customers, _items);
             createBillView.ShowDialog();
         }
     }

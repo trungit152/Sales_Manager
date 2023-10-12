@@ -139,7 +139,7 @@
             this.txtCustomerId.Location = new System.Drawing.Point(198, 28);
             this.txtCustomerId.Name = "txtCustomerId";
             this.txtCustomerId.Size = new System.Drawing.Size(295, 26);
-            this.txtCustomerId.TabIndex = 9;
+            this.txtCustomerId.TabIndex = 1;
             this.txtCustomerId.Text = "CMND/CCCD";
             this.txtCustomerId.Enter += new System.EventHandler(this.TxtIdTakeForcus);
             this.txtCustomerId.Leave += new System.EventHandler(this.TxtIdLeaveFocus);
@@ -149,7 +149,7 @@
             this.txtFullName.Location = new System.Drawing.Point(198, 70);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(295, 26);
-            this.txtFullName.TabIndex = 10;
+            this.txtFullName.TabIndex = 2;
             // 
             // datePickerBirthDate
             // 
@@ -158,28 +158,28 @@
             this.datePickerBirthDate.Location = new System.Drawing.Point(198, 113);
             this.datePickerBirthDate.Name = "datePickerBirthDate";
             this.datePickerBirthDate.Size = new System.Drawing.Size(295, 26);
-            this.datePickerBirthDate.TabIndex = 11;
+            this.datePickerBirthDate.TabIndex = 3;
             // 
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(198, 157);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(295, 26);
-            this.txtAddress.TabIndex = 12;
+            this.txtAddress.TabIndex = 4;
             // 
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Location = new System.Drawing.Point(198, 196);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(295, 26);
-            this.txtPhoneNumber.TabIndex = 13;
+            this.txtPhoneNumber.TabIndex = 5;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(198, 241);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(295, 26);
-            this.txtEmail.TabIndex = 14;
+            this.txtEmail.TabIndex = 6;
             // 
             // numericPoint
             // 
@@ -191,7 +191,7 @@
             0});
             this.numericPoint.Name = "numericPoint";
             this.numericPoint.Size = new System.Drawing.Size(295, 26);
-            this.numericPoint.TabIndex = 15;
+            this.numericPoint.TabIndex = 7;
             // 
             // comboCustomerType
             // 
@@ -199,7 +199,7 @@
             this.comboCustomerType.Location = new System.Drawing.Point(198, 320);
             this.comboCustomerType.Name = "comboCustomerType";
             this.comboCustomerType.Size = new System.Drawing.Size(295, 28);
-            this.comboCustomerType.TabIndex = 16;
+            this.comboCustomerType.TabIndex = 8;
             // 
             // datePickerCreatedAcc
             // 
@@ -208,7 +208,7 @@
             this.datePickerCreatedAcc.Location = new System.Drawing.Point(198, 364);
             this.datePickerCreatedAcc.Name = "datePickerCreatedAcc";
             this.datePickerCreatedAcc.Size = new System.Drawing.Size(295, 26);
-            this.datePickerCreatedAcc.TabIndex = 17;
+            this.datePickerCreatedAcc.TabIndex = 9;
             // 
             // btnAddNew
             // 
@@ -217,7 +217,7 @@
             this.btnAddNew.Location = new System.Drawing.Point(93, 424);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(138, 46);
-            this.btnAddNew.TabIndex = 18;
+            this.btnAddNew.TabIndex = 10;
             this.btnAddNew.Text = "Thêm mới";
             this.btnAddNew.UseVisualStyleBackColor = true;
             this.btnAddNew.Click += new System.EventHandler(this.BtnAddUpdateClick);
@@ -229,7 +229,7 @@
             this.btnCancel.Location = new System.Drawing.Point(302, 424);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(138, 46);
-            this.btnCancel.TabIndex = 19;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Hủy bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);

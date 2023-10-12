@@ -1,39 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
-    public class BillDetail : Bill, IEquatable<BillDetail>
+    public class BillDetail : Bill
     {
         public string PaymentMethod { get; set; }
         public string StaffName { get; set; }
-        public BillDetail() { }
-        public BillDetail(string PaymentMethod, string StaffName)
+
+        public BillDetail()
         {
-            this.PaymentMethod = PaymentMethod;
-            this.StaffName = StaffName;
         }
-        public BillDetail(int billId, Cart cart, DateTime createdTime, int totalItem, long subTotal, 
-            long totalDiscountAmount, long totalAmount, string status, string PaymentMethod, string StaffName) :
-            base(billId, cart, createdTime, totalItem, subTotal, totalDiscountAmount, totalAmount, status)
+
+        public BillDetail(int id) : base(id) { }
+
+        public BillDetail(string paymentMethod, string staffName)
         {
-            this.PaymentMethod = PaymentMethod;
-            this.StaffName = StaffName;
+            PaymentMethod = paymentMethod;
+            StaffName = staffName;
+        }
+
+        public BillDetail(int billId, Cart cart, DateTime createdTime, int totalItem,
+            long subTotal, long totalDiscountAmount, long totalAmount, string status,
+            string paymentMethod, string staffName) :
+            base(billId, cart, createdTime, totalItem, subTotal,
+                totalDiscountAmount, totalAmount, status)
+        {
+            PaymentMethod = paymentMethod;
+            StaffName = staffName;
         }
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as BillDetail);
-        }
-
-        public bool Equals(BillDetail other)
-        {
-            return !(other is null) &&
-                   base.Equals(other) &&
-                   BillId == other.BillId;
+            return obj is BillDetail detail &&
+                   base.Equals(obj) &&
+                   BillId == detail.BillId;
         }
 
         public override int GetHashCode()
@@ -42,16 +42,6 @@ namespace Models
             hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + BillId.GetHashCode();
             return hashCode;
-        }
-
-        public static bool operator ==(BillDetail left, BillDetail right)
-        {
-            return EqualityComparer<BillDetail>.Default.Equals(left, right);
-        }
-
-        public static bool operator !=(BillDetail left, BillDetail right)
-        {
-            return !(left == right);
         }
     }
 }

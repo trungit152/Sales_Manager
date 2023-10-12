@@ -57,7 +57,7 @@
             this.label1.Location = new System.Drawing.Point(50, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 20);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 11;
             this.label1.Text = "Mã mặt hàng:";
             // 
             // label2
@@ -66,7 +66,7 @@
             this.label2.Location = new System.Drawing.Point(50, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 20);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 11;
             this.label2.Text = "Tên mặt hàng:";
             // 
             // label3
@@ -75,7 +75,7 @@
             this.label3.Location = new System.Drawing.Point(50, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 20);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 11;
             this.label3.Text = "Loại mặt hàng:";
             // 
             // label4
@@ -84,7 +84,7 @@
             this.label4.Location = new System.Drawing.Point(50, 153);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 20);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 3111;
             this.label4.Text = "Số lượng:";
             // 
             // label5
@@ -93,7 +93,7 @@
             this.label5.Location = new System.Drawing.Point(50, 192);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 20);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 11;
             this.label5.Text = "Hãng sản xuất:";
             // 
             // label6
@@ -102,7 +102,7 @@
             this.label6.Location = new System.Drawing.Point(50, 231);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(120, 20);
-            this.label6.TabIndex = 5;
+            this.label6.TabIndex = 11;
             this.label6.Text = "Ngày sản xuất:";
             // 
             // label8
@@ -111,7 +111,7 @@
             this.label8.Location = new System.Drawing.Point(50, 309);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 20);
-            this.label8.TabIndex = 7;
+            this.label8.TabIndex = 11;
             this.label8.Text = "Khuyến mãi:";
             // 
             // label7
@@ -120,7 +120,7 @@
             this.label7.Location = new System.Drawing.Point(50, 270);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 20);
-            this.label7.TabIndex = 6;
+            this.label7.TabIndex = 11;
             this.label7.Text = "Giá bán:";
             // 
             // btnAddNew
@@ -130,7 +130,7 @@
             this.btnAddNew.Location = new System.Drawing.Point(75, 364);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(139, 40);
-            this.btnAddNew.TabIndex = 8;
+            this.btnAddNew.TabIndex = 9;
             this.btnAddNew.Text = "Thêm mới";
             this.btnAddNew.UseVisualStyleBackColor = true;
             this.btnAddNew.Click += new System.EventHandler(this.BtnAddItemClick);
@@ -142,7 +142,7 @@
             this.btnCancel.Location = new System.Drawing.Point(244, 364);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(139, 40);
-            this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Hủy bỏ";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
@@ -153,7 +153,7 @@
             this.txtId.Location = new System.Drawing.Point(194, 29);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(215, 27);
-            this.txtId.TabIndex = 10;
+            this.txtId.TabIndex = 1;
             this.txtId.Text = "0";
             // 
             // txtBrand
@@ -161,14 +161,14 @@
             this.txtBrand.Location = new System.Drawing.Point(194, 186);
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(215, 27);
-            this.txtBrand.TabIndex = 11;
+            this.txtBrand.TabIndex = 5;
             // 
             // txtItemName
             // 
             this.txtItemName.Location = new System.Drawing.Point(194, 68);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(215, 27);
-            this.txtItemName.TabIndex = 12;
+            this.txtItemName.TabIndex = 2;
             // 
             // comboItemType
             // 
@@ -181,7 +181,7 @@
             this.comboItemType.Location = new System.Drawing.Point(194, 107);
             this.comboItemType.Name = "comboItemType";
             this.comboItemType.Size = new System.Drawing.Size(215, 28);
-            this.comboItemType.TabIndex = 13;
+            this.comboItemType.TabIndex = 3;
             // 
             // numericQuantity
             // 
@@ -193,7 +193,7 @@
             0});
             this.numericQuantity.Name = "numericQuantity";
             this.numericQuantity.Size = new System.Drawing.Size(215, 27);
-            this.numericQuantity.TabIndex = 14;
+            this.numericQuantity.TabIndex = 4;
             // 
             // datePickerReleaseDate
             // 
@@ -202,7 +202,7 @@
             this.datePickerReleaseDate.Location = new System.Drawing.Point(194, 225);
             this.datePickerReleaseDate.Name = "datePickerReleaseDate";
             this.datePickerReleaseDate.Size = new System.Drawing.Size(215, 27);
-            this.datePickerReleaseDate.TabIndex = 15;
+            this.datePickerReleaseDate.TabIndex = 6;
             // 
             // numericPrice
             // 
@@ -214,7 +214,7 @@
             0});
             this.numericPrice.Name = "numericPrice";
             this.numericPrice.Size = new System.Drawing.Size(215, 27);
-            this.numericPrice.TabIndex = 16;
+            this.numericPrice.TabIndex = 7;
             // 
             // comboDiscount
             // 
@@ -222,7 +222,7 @@
             this.comboDiscount.Location = new System.Drawing.Point(194, 303);
             this.comboDiscount.Name = "comboDiscount";
             this.comboDiscount.Size = new System.Drawing.Size(215, 28);
-            this.comboDiscount.TabIndex = 17;
+            this.comboDiscount.TabIndex = 8;
             // 
             // AddEditItemFrm
             // 

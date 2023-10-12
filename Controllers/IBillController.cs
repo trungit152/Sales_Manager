@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models;
 
 namespace Controllers
 {
-    internal interface IBillController
+    public interface IBillController
     {
+        void UpdateBill (BillDetail bill, SelectedItem Item);
     }
 }
