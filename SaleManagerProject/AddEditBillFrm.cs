@@ -18,47 +18,67 @@ namespace SaleManagerProject
         private List<Customer> _customer;
         private IViewController _controller;
         private BillDetail _bill;
-        private CommonController _commonController;
         private List<Customer> _searchedCustomerResults;
         private List<Item> _searchedItemResults;
         private IBillController _billController;
         private bool _isEditing = false;
         private int _selectedIndex = -1;
+        private bool _isUpdateBill;
+        private CommonController _commonController;
+        private List<BillDetail> _bills;
 
         public AddEditBillFrm()
         {
             InitializeComponent();
             CenterToParent();
-            _commonController = new CommonController();
             _billController = new BillController();
             _searchedCustomerResults = new List<Customer>();
             _searchedItemResults = new List<Item>();
         }
 
         public AddEditBillFrm(IViewController controller,
-            List<Customer> customers, List<Item> items, BillDetail bill = null) : this()
+            List<Customer> customers, List<Item> items, List<BillDetail> bills, 
+            CommonController commonController, BillDetail bill = null) : this()
         {
             _controller = controller;
             _items = items;
+            _bills = bills;
             _customer = customers;
+            _commonController = commonController;
             if (bill != null)
-            {
+            {   
+                _isUpdateBill = true;
                 _bill = bill;
                 ShowBillData();
             }
             else
             {
                 _bill = new BillDetail(0);
+                _isUpdateBill = false;
             }
         }
         private void ShowBillData()
         {
-            throw new NotImplementedException();
+            foreach (var item in _bill.Cart.SelectedItems)
+            {
+                tblBillDetail.Rows.Add(
+                    new object[]
+                    {
+                        _bill.BillId, item.ItemId, item.ItemName, $"{item.NumberOfSelectedItem:N0}",
+                        $"{item.Price:N0}", $"{item.PriceAfterDiscount:N0}",
+                        $"{item.NumberOfSelectedItem * item.PriceAfterDiscount:N0}"
+                    }
+                );
+            }
+            txtSearchCustomer.Text = _bill.Cart?.Customer?.FullName.ToString();
+            labelCreatedTime.Text = _bill.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss");
+            txtStaff.Text = _bill.StaffName;
+            ShowTotalInfo();
         }
 
         private void BtnPayClick(object sender, EventArgs e)
         {
-            var paymentView = new PaymentFrm();
+            var paymentView = new PaymentFrm(_controller, _bill);
             paymentView.Show();
         }
 
@@ -120,6 +140,18 @@ namespace SaleManagerProject
             }
         }
 
+        private void ShowSearchItemResult()
+        {
+            tblSearchedItem.Rows.Clear();
+            foreach (var item in _searchedItemResults)
+            {
+                tblSearchedItem.Rows.Add(new object[]
+                {
+                            item.ItemId, item.ItemName, $"{item.Quantity:N0}"
+                });
+            }
+        }
+
         private void TblCustomerCellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == tblSearchedCustomer.Columns["tblCustomerColSelect"].Index)
@@ -143,16 +175,28 @@ namespace SaleManagerProject
             {
                 SelectedItem item = new SelectedItem(_searchedItemResults[e.RowIndex]);
                 item.NumberOfSelectedItem = (int)numericSelectedQuantity.Value;
-                if (item.NumberOfSelectedItem > 0)
+                if (item.NumberOfSelectedItem > item.Quantity)
                 {
-                    numericSelectedQuantity.Value = 0;
-                    _billController.UpdateBill(_bill, item);
-                    ShowBillDetail(item);
-                    ShowTotalInfo();
+                    var title = "Lỗi dữ liệu";
+                    var msg = "Số lượng hàng cần mua vượt quá số lượng hiện có.";
+                    MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    ShowErrorNumberOfSelectedItem();
+                    item.Quantity -= item.NumberOfSelectedItem;
+                    if (item.NumberOfSelectedItem > 0)
+                    {
+                        numericSelectedQuantity.Value = 0;
+                        _billController.UpdateBill(_bill, item);
+                        ShowBillDetail(item);
+                        ShowTotalInfo();
+                        _searchedItemResults[e.RowIndex].Quantity = item.Quantity;
+                        ShowSearchItemResult();
+                    }
+                    else
+                    {
+                        ShowErrorNumberOfSelectedItem();
+                    }
                 }
             }
         }
@@ -214,6 +258,56 @@ namespace SaleManagerProject
                 _selectedIndex = e.RowIndex;
                 numericSelectedQuantity.Value = _bill.Cart.SelectedItems[e.RowIndex].NumberOfSelectedItem;
             }
+            else if (e.RowIndex >= 0 && e.RowIndex < _bill.Cart.SelectedItems.Count &&
+                e.ColumnIndex == tblBillDetail.Columns["tblBillDetailColRemove"].Index) 
+            {
+                var title = "Xác nhận xóa";
+                var msg = "Bạn có chắc chắn muốn xóa bản ghi này không?";
+                var ans = MessageBox.Show(msg,title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(ans == DialogResult.Yes )
+                {
+                    _billController.RemoveItem(_bill, e.RowIndex);
+                    tblBillDetail.Rows.RemoveAt(e.RowIndex);
+                    ShowTotalInfo();
+                    MessageBox.Show("Xóa thành công", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void BtnSaveClick(object sender, EventArgs e)
+        {
+            _bill.CreatedTime = DateTime.Now;
+            if (string.IsNullOrEmpty(_bill.Status))
+            {
+                _bill.Status = "Đang xử lý";
+            }
+            if (_isUpdateBill) // cập nhật
+            {
+                _controller.UpdateItem(_bill);
+            }
+            else // thêm mới
+            {
+                _controller.AddNewItem(_bill);
+            }
+            Dispose();
+        }
+
+        private void UpdateStaffInfo(object sender, EventArgs e)
+        {
+            _bill.StaffName = txtStaff.Text;
+        }
+
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            _bill.Status = "Đã hủy";
+            _controller.UpdateItem(_bill);
+        }
+
+        private void BtnRemoveClick(object sender, EventArgs e)
+        {
+            _controller.Remove(_bill);
+            _commonController.DeleteItem(_bills, _bill);
+            Dispose();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Controllers
     public interface IBillController
     {
         void UpdateBill (BillDetail bill, SelectedItem Item);
+        void RemoveItem (BillDetail bill, int index);
     }
 }

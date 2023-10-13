@@ -7,6 +7,7 @@ using CSharpCourseFinalProject;
 
 namespace SaleManagerProject
 {
+
     public enum ActionType
     {
         NORMAL, SEARCH
@@ -15,23 +16,25 @@ namespace SaleManagerProject
     {
         void AddNewItem<T>(T item);
         void UpdateItem<T>(T updatedItem);
-
+        void Remove<T>(T item);
     }
     public partial class HomeFrm : Form, IViewController
     {
         private static string DATE_FORMAT = "dd/MM/yyyy";
         private static string DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
+
         private List<Item> _items;
         private List<Discount> _discounts;
         private List<Customer> _customers;
         private CommonController _commonController;
         private ItemController _itemController;
         private List<Item> _searchItemResults;
-        private ActionType _actionType;
         private List<Customer> _searchCustomerResults;
+        private ActionType _actionType;
         private CustomerController _customerController;
         private List<Discount> _searchDiscountResults;
         private IDiscountController _discountController;
+        private List<BillDetail> _bills;
         public HomeFrm()
         {
             InitializeComponent();
@@ -39,18 +42,20 @@ namespace SaleManagerProject
             _items = new List<Item>();
             _discounts = new List<Discount>();
             _customers = new List<Customer>();
+            _bills = new List<BillDetail>();
             _commonController = new CommonController();
-            _itemController = new ItemController();
-            _actionType = ActionType.NORMAL;
-            _searchCustomerResults = new List<Customer>();
             _customerController = new CustomerController();
             _discountController = new DiscountController();
-            //nạp dữ liệu
+            _itemController = new ItemController();
+            _searchItemResults = new List<Item>();
+            _searchCustomerResults = new List<Customer>();
+            _searchDiscountResults = new List<Discount>();
+            _actionType = ActionType.NORMAL;
+            // nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
             _customers.AddRange(Utils.CreateFakeCustomer());
-            _searchDiscountResults = new List<Discount>();
             _discounts.AddRange(Utils.CreateFakeDiscounts());
-            //Hien thi
+            // hiển thị dữ liệu
             ShowItems(_items);
             ShowCustomers(_customers);
             ShowDiscounts(_discounts);
@@ -119,11 +124,10 @@ namespace SaleManagerProject
                 else
                 {
                     _commonController.AddNewItem(_customers, customer);
-                    tblCustomer.Rows.Add(new object[]
-                    {
-                    customer.PersonId, customer.FullName?.ToString(), customer.BirthDate.ToString(DATE_FORMAT),
-                    customer.Address, customer.PhoneNumber, customer.CustomerType, $"{customer.Point:N0}",
-                    customer.CreateTime.ToString(DATE_TIME_FORMAT), customer.Email
+                    tblCustomer.Rows.Add(new object[] {
+                        customer.PersonId, customer.FullName?.ToString(), customer.BirthDate.ToString(DATE_FORMAT),
+                        customer.Address, customer.PhoneNumber, customer.CustomerType, $"{customer.Point:N0}",
+                        customer.CreateTime.ToString(DATE_TIME_FORMAT), customer.Email
                     });
                 }
             }
@@ -136,6 +140,22 @@ namespace SaleManagerProject
                         discount.DiscountId, discount.Name, discount.StartTime.ToString(DATE_TIME_FORMAT),
                         discount.EndTime.ToString(DATE_TIME_FORMAT), discount.DiscountType,
                         discount.DiscountPercent, $"{discount.DiscountPriceAmount:N0}"
+                    }
+                );
+            }
+            else if (typeof(T) == typeof(BillDetail))
+            {
+                var billDetail = item as BillDetail;
+                _commonController.AddNewItem(_bills, billDetail);
+                tblBill.Rows.Add(
+                    new object[] {
+                        billDetail.BillId, billDetail.Cart.Customer.FullName.ToString(),
+                        billDetail.StaffName, billDetail.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss"),
+                        $"{billDetail.TotalItem:N0}",
+                        $"{billDetail.SubTotal:N0}",
+                        $"{billDetail.TotalDiscountAmount:N0}",
+                        $"{billDetail.TotalAmount:N0}",
+                        billDetail.Status
                     }
                 );
             }
@@ -673,8 +693,25 @@ namespace SaleManagerProject
 
         private void BtnAddNewBillClick(object sender, EventArgs e)
         {
-            var createBillView = new AddEditBillFrm(this, _customers, _items);
-            createBillView.ShowDialog();
+            var createBillView = new AddEditBillFrm(this, _customers, _items, _bills, _commonController);
+            createBillView.ShowDialog();       
+        }
+        public void Remove<T>(T item)
+        {
+            if (typeof(T) == typeof(BillDetail))
+            {
+                // xóa trong bảng hóa đơn
+            }
+        }
+
+        private void TbBillCellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == tblBill.Columns["tblBillColViewDetail"].Index)
+            {
+                var bill = _bills[e.RowIndex];
+                var createBillView = new AddEditBillFrm(this, _customers, _items, _bills, _commonController, bill);
+                createBillView.Show();
+            }
         }
     }
 }

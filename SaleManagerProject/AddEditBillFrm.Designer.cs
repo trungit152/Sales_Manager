@@ -59,15 +59,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tblBillDetail = new System.Windows.Forms.DataGridView();
-            this.labelTotalDiscount = new System.Windows.Forms.Label();
-            this.labelTotalAmount = new System.Windows.Forms.Label();
-            this.labelCustomerName = new System.Windows.Forms.Label();
-            this.labelTotalItem = new System.Windows.Forms.Label();
-            this.labelCreatedTime = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnPay = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,6 +68,15 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblBillDetailColEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tblBillDetailColRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.labelTotalDiscount = new System.Windows.Forms.Label();
+            this.labelTotalAmount = new System.Windows.Forms.Label();
+            this.labelCustomerName = new System.Windows.Forms.Label();
+            this.labelTotalItem = new System.Windows.Forms.Label();
+            this.labelCreatedTime = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnPay = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblSearchedCustomer)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -137,6 +137,7 @@
             this.tblSearchedCustomer.Size = new System.Drawing.Size(598, 148);
             this.tblSearchedCustomer.TabIndex = 5;
             this.tblSearchedCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblCustomerCellClick);
+            this.tblSearchedCustomer.Leave += new System.EventHandler(this.UpdateStaffInfo);
             // 
             // Column1
             // 
@@ -390,96 +391,6 @@
             this.tblBillDetail.TabIndex = 0;
             this.tblBillDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TblBillDetailCellClick);
             // 
-            // labelTotalDiscount
-            // 
-            this.labelTotalDiscount.AutoSize = true;
-            this.labelTotalDiscount.Location = new System.Drawing.Point(485, 310);
-            this.labelTotalDiscount.Name = "labelTotalDiscount";
-            this.labelTotalDiscount.Size = new System.Drawing.Size(104, 20);
-            this.labelTotalDiscount.TabIndex = 4;
-            this.labelTotalDiscount.Text = "Tổng KM: 0đ";
-            // 
-            // labelTotalAmount
-            // 
-            this.labelTotalAmount.AutoSize = true;
-            this.labelTotalAmount.Location = new System.Drawing.Point(712, 310);
-            this.labelTotalAmount.Name = "labelTotalAmount";
-            this.labelTotalAmount.Size = new System.Drawing.Size(106, 20);
-            this.labelTotalAmount.TabIndex = 5;
-            this.labelTotalAmount.Text = "Tổng tiền: 0đ";
-            // 
-            // labelCustomerName
-            // 
-            this.labelCustomerName.AutoSize = true;
-            this.labelCustomerName.Location = new System.Drawing.Point(19, 594);
-            this.labelCustomerName.Name = "labelCustomerName";
-            this.labelCustomerName.Size = new System.Drawing.Size(102, 20);
-            this.labelCustomerName.TabIndex = 2;
-            this.labelCustomerName.Text = "Khách hàng:";
-            // 
-            // labelTotalItem
-            // 
-            this.labelTotalItem.AutoSize = true;
-            this.labelTotalItem.Location = new System.Drawing.Point(280, 594);
-            this.labelTotalItem.Name = "labelTotalItem";
-            this.labelTotalItem.Size = new System.Drawing.Size(106, 20);
-            this.labelTotalItem.TabIndex = 3;
-            this.labelTotalItem.Text = "Tổng số: 0sp";
-            // 
-            // labelCreatedTime
-            // 
-            this.labelCreatedTime.AutoSize = true;
-            this.labelCreatedTime.Location = new System.Drawing.Point(967, 594);
-            this.labelCreatedTime.Name = "labelCreatedTime";
-            this.labelCreatedTime.Size = new System.Drawing.Size(82, 20);
-            this.labelCreatedTime.TabIndex = 6;
-            this.labelCreatedTime.Text = "Thời gian:";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(201, 659);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(143, 42);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Lưu lại";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnPay
-            // 
-            this.btnPay.Image = ((System.Drawing.Image)(resources.GetObject("btnPay.Image")));
-            this.btnPay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPay.Location = new System.Drawing.Point(441, 659);
-            this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(143, 42);
-            this.btnPay.TabIndex = 8;
-            this.btnPay.Text = "Thanh toán";
-            this.btnPay.UseVisualStyleBackColor = true;
-            this.btnPay.Click += new System.EventHandler(this.BtnPayClick);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(921, 659);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(143, 42);
-            this.btnCancel.TabIndex = 10;
-            this.btnCancel.Text = "Hủy bỏ";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
-            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(681, 659);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(143, 42);
-            this.btnRemove.TabIndex = 9;
-            this.btnRemove.Text = "Xóa bỏ";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            // 
             // Column4
             // 
             this.Column4.HeaderText = "Mã HĐ";
@@ -538,6 +449,99 @@
             this.tblBillDetailColRemove.Name = "tblBillDetailColRemove";
             this.tblBillDetailColRemove.Text = "Xóa bỏ";
             this.tblBillDetailColRemove.UseColumnTextForButtonValue = true;
+            // 
+            // labelTotalDiscount
+            // 
+            this.labelTotalDiscount.AutoSize = true;
+            this.labelTotalDiscount.Location = new System.Drawing.Point(485, 310);
+            this.labelTotalDiscount.Name = "labelTotalDiscount";
+            this.labelTotalDiscount.Size = new System.Drawing.Size(104, 20);
+            this.labelTotalDiscount.TabIndex = 4;
+            this.labelTotalDiscount.Text = "Tổng KM: 0đ";
+            // 
+            // labelTotalAmount
+            // 
+            this.labelTotalAmount.AutoSize = true;
+            this.labelTotalAmount.Location = new System.Drawing.Point(712, 310);
+            this.labelTotalAmount.Name = "labelTotalAmount";
+            this.labelTotalAmount.Size = new System.Drawing.Size(106, 20);
+            this.labelTotalAmount.TabIndex = 5;
+            this.labelTotalAmount.Text = "Tổng tiền: 0đ";
+            // 
+            // labelCustomerName
+            // 
+            this.labelCustomerName.AutoSize = true;
+            this.labelCustomerName.Location = new System.Drawing.Point(19, 594);
+            this.labelCustomerName.Name = "labelCustomerName";
+            this.labelCustomerName.Size = new System.Drawing.Size(102, 20);
+            this.labelCustomerName.TabIndex = 2;
+            this.labelCustomerName.Text = "Khách hàng:";
+            // 
+            // labelTotalItem
+            // 
+            this.labelTotalItem.AutoSize = true;
+            this.labelTotalItem.Location = new System.Drawing.Point(280, 594);
+            this.labelTotalItem.Name = "labelTotalItem";
+            this.labelTotalItem.Size = new System.Drawing.Size(106, 20);
+            this.labelTotalItem.TabIndex = 3;
+            this.labelTotalItem.Text = "Tổng số: 0sp";
+            // 
+            // labelCreatedTime
+            // 
+            this.labelCreatedTime.AutoSize = true;
+            this.labelCreatedTime.Location = new System.Drawing.Point(967, 594);
+            this.labelCreatedTime.Name = "labelCreatedTime";
+            this.labelCreatedTime.Size = new System.Drawing.Size(82, 20);
+            this.labelCreatedTime.TabIndex = 6;
+            this.labelCreatedTime.Text = "Thời gian:";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(201, 659);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(143, 42);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Lưu lại";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
+            // 
+            // btnPay
+            // 
+            this.btnPay.Image = ((System.Drawing.Image)(resources.GetObject("btnPay.Image")));
+            this.btnPay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPay.Location = new System.Drawing.Point(441, 659);
+            this.btnPay.Name = "btnPay";
+            this.btnPay.Size = new System.Drawing.Size(143, 42);
+            this.btnPay.TabIndex = 8;
+            this.btnPay.Text = "Thanh toán";
+            this.btnPay.UseVisualStyleBackColor = true;
+            this.btnPay.Click += new System.EventHandler(this.BtnPayClick);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(921, 659);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(143, 42);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "Hủy bỏ";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemove.Location = new System.Drawing.Point(681, 659);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(143, 42);
+            this.btnRemove.TabIndex = 9;
+            this.btnRemove.Text = "Xóa bỏ";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemoveClick);
             // 
             // AddEditBillFrm
             // 
