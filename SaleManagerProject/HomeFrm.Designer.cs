@@ -151,11 +151,6 @@
             this.btnRefreshBill = new System.Windows.Forms.Button();
             this.btnAddNewBill = new System.Windows.Forms.Button();
             this.tblBill = new System.Windows.Forms.DataGridView();
-            this.tabStat = new System.Windows.Forms.TabPage();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.tblStat = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -166,6 +161,11 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblBillColViewDetail = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tabStat = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tblStat = new System.Windows.Forms.DataGridView();
             this.tab.SuspendLayout();
             this.tabItem.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1318,6 +1318,7 @@
             this.btnRefreshBill.TabIndex = 1;
             this.btnRefreshBill.Text = "Làm mới";
             this.btnRefreshBill.UseVisualStyleBackColor = true;
+            this.btnRefreshBill.Click += new System.EventHandler(this.BtnRefreshBillClick);
             // 
             // btnAddNewBill
             // 
@@ -1364,66 +1365,6 @@
             this.tblBill.Size = new System.Drawing.Size(1365, 453);
             this.tblBill.TabIndex = 7;
             this.tblBill.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TbBillCellClick);
-            // 
-            // tabStat
-            // 
-            this.tabStat.Controls.Add(this.groupBox12);
-            this.tabStat.Controls.Add(this.tblStat);
-            this.tabStat.Location = new System.Drawing.Point(4, 28);
-            this.tabStat.Name = "tabStat";
-            this.tabStat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStat.Size = new System.Drawing.Size(1365, 660);
-            this.tabStat.TabIndex = 4;
-            this.tabStat.Text = "THỐNG KÊ";
-            this.tabStat.UseVisualStyleBackColor = true;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.label12);
-            this.groupBox12.Controls.Add(this.comboBox2);
-            this.groupBox12.Cursor = System.Windows.Forms.Cursors.Default;
-            this.groupBox12.Location = new System.Drawing.Point(6, 465);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox12.Size = new System.Drawing.Size(1353, 188);
-            this.groupBox12.TabIndex = 9;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Thống kê theo tiêu chí";
-            this.groupBox12.UseCompatibleTextRendering = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(293, 85);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 16);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Tiêu chí:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Tên khách hàng gần đúng.",
-            "Mã khách hàng.",
-            "Loại khách hàng.",
-            "Địa chỉ.",
-            "Số điện thoại."});
-            this.comboBox2.Location = new System.Drawing.Point(358, 82);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(702, 24);
-            this.comboBox2.TabIndex = 0;
-            // 
-            // tblStat
-            // 
-            this.tblStat.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.tblStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblStat.Location = new System.Drawing.Point(6, 6);
-            this.tblStat.Name = "tblStat";
-            this.tblStat.RowHeadersWidth = 51;
-            this.tblStat.RowTemplate.Height = 24;
-            this.tblStat.Size = new System.Drawing.Size(1353, 453);
-            this.tblStat.TabIndex = 7;
             // 
             // Column1
             // 
@@ -1486,6 +1427,66 @@
             this.tblBillColViewDetail.Name = "tblBillColViewDetail";
             this.tblBillColViewDetail.Text = "Xem";
             this.tblBillColViewDetail.UseColumnTextForButtonValue = true;
+            // 
+            // tabStat
+            // 
+            this.tabStat.Controls.Add(this.groupBox12);
+            this.tabStat.Controls.Add(this.tblStat);
+            this.tabStat.Location = new System.Drawing.Point(4, 28);
+            this.tabStat.Name = "tabStat";
+            this.tabStat.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStat.Size = new System.Drawing.Size(1365, 660);
+            this.tabStat.TabIndex = 4;
+            this.tabStat.Text = "THỐNG KÊ";
+            this.tabStat.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label12);
+            this.groupBox12.Controls.Add(this.comboBox2);
+            this.groupBox12.Cursor = System.Windows.Forms.Cursors.Default;
+            this.groupBox12.Location = new System.Drawing.Point(6, 465);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.groupBox12.Size = new System.Drawing.Size(1353, 188);
+            this.groupBox12.TabIndex = 9;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Thống kê theo tiêu chí";
+            this.groupBox12.UseCompatibleTextRendering = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(293, 85);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 16);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Tiêu chí:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Tên khách hàng gần đúng.",
+            "Mã khách hàng.",
+            "Loại khách hàng.",
+            "Địa chỉ.",
+            "Số điện thoại."});
+            this.comboBox2.Location = new System.Drawing.Point(358, 82);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(702, 24);
+            this.comboBox2.TabIndex = 0;
+            // 
+            // tblStat
+            // 
+            this.tblStat.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.tblStat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblStat.Location = new System.Drawing.Point(6, 6);
+            this.tblStat.Name = "tblStat";
+            this.tblStat.RowHeadersWidth = 51;
+            this.tblStat.RowTemplate.Height = 24;
+            this.tblStat.Size = new System.Drawing.Size(1353, 453);
+            this.tblStat.TabIndex = 7;
             // 
             // HomeFrm
             // 

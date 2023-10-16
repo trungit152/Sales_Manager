@@ -59,8 +59,11 @@ namespace Controllers
         public int UpdateItem<T>(List<T> values, T item)
         {
             int index = IndexOfItem(values, item);
-            values.RemoveAt(index);
-            values.Insert(index, item);
+            if (index >= 0)
+            {
+                values.RemoveAt(index);
+                values.Insert(index, item);
+            }
             return index;
         }
 

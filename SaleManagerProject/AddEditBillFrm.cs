@@ -59,6 +59,8 @@ namespace SaleManagerProject
         }
         private void ShowBillData()
         {
+            // update
+            tblBillDetail.Rows.Clear();
             foreach (var item in _bill.Cart.SelectedItems)
             {
                 tblBillDetail.Rows.Add(
@@ -183,12 +185,13 @@ namespace SaleManagerProject
                 }
                 else
                 {
-                    item.Quantity -= item.NumberOfSelectedItem;
                     if (item.NumberOfSelectedItem > 0)
                     {
+                        item.Quantity -= item.NumberOfSelectedItem;
                         numericSelectedQuantity.Value = 0;
                         _billController.UpdateBill(_bill, item);
-                        ShowBillDetail(item);
+                        // update
+                        ShowBillData();
                         ShowTotalInfo();
                         _searchedItemResults[e.RowIndex].Quantity = item.Quantity;
                         ShowSearchItemResult();
@@ -231,7 +234,8 @@ namespace SaleManagerProject
                 else
                 {
                     item.NumberOfSelectedItem = newValue;
-                    _billController.UpdateBill(_bill, item);
+                    // update
+                    _billController.UpdateBill(_bill, item, true);
                     ShowTotalInfo();
                     tblBillDetail.Rows.RemoveAt(_selectedIndex);
                     tblBillDetail.Rows.Insert(_selectedIndex, new object[]
@@ -249,7 +253,6 @@ namespace SaleManagerProject
                 }
             }
         }
-
         private void TblBillDetailCellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == tblBillDetail.Columns["tblBillDetailColEdit"].Index)
@@ -299,15 +302,30 @@ namespace SaleManagerProject
 
         private void BtnCancelClick(object sender, EventArgs e)
         {
-            _bill.Status = "Đã hủy";
-            _controller.UpdateItem(_bill);
+            var tilte = "Xác nhận hủy hóa đơn";
+            var msg = "Bạn có chắc muốn hủy bỏ hóa đơn này không?";
+            var ans = MessageBox.Show(msg, tilte, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (ans == DialogResult.Yes)
+            {
+                _bill.Status = "Đã hủy";
+                _bill.CreatedTime = DateTime.Now;
+                _controller.UpdateItem(_bill);
+                Dispose();
+            }
         }
 
         private void BtnRemoveClick(object sender, EventArgs e)
         {
-            _controller.Remove(_bill);
-            _commonController.DeleteItem(_bills, _bill);
-            Dispose();
+            var tilte = "Xác nhận xóa";
+            var msg = "Bạn có chắc muốn xóa bản ghi này không?";
+            var ans = MessageBox.Show(msg, tilte, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (ans == DialogResult.Yes)
+            {
+                _commonController.DeleteItem(_bills, _bill);
+                _controller.Remove(_bill);
+                MessageBox.Show("Xoá thành công", "Kết quả xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Dispose();
+            }
         }
     }
 }

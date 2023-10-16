@@ -19,11 +19,19 @@ namespace Controllers
             bill.Cart.SelectedItems.Remove(item);
         }
 
-        public void UpdateBill(BillDetail bill, SelectedItem item)
+        public void UpdateBill(BillDetail bill, SelectedItem item, bool isUpdated = false)
         {
             int index = bill.Cart.SelectedItems.IndexOf(item);
             if (index >= 0)
             {
+                if (isUpdated) // sửa số lượng 1 sản phẩm
+                {
+                    bill.Cart.SelectedItems[index].NumberOfSelectedItem = item.NumberOfSelectedItem;
+                }
+                else // thêm mới 1 sản phẩm đã tồn tại tại 2 thời điểm khác nhau
+                {
+                    bill.Cart.SelectedItems[index].NumberOfSelectedItem += item.NumberOfSelectedItem;
+                }
                 var items = bill.Cart.SelectedItems;
                 bill.TotalItem = 0;
                 bill.TotalAmount = 0;

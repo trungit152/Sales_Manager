@@ -32,12 +32,12 @@ namespace SaleManagerProject
         private void ShowData()
         {
             txtBillId.Text = _bill.BillId + "";
-            txtCustomerName.Text = _bill.Cart.Customer.FullName.ToString();
+            txtCustomerName.Text = _bill.Cart?.Customer?.FullName.ToString();
             txtStaffName.Text = _bill.StaffName;
             txtCreatedTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             txtTotalItem.Text = $"{_bill.TotalItem}sp";
             txtTotalDiscount.Text = $"{_bill.TotalDiscountAmount}đ";
-            txtTotalAmount.Text = $"{_bill.TotalAmount}đ";
+            txtTotalAmount.Text = $"{_bill.TotalAmount:N0}đ";
         }
 
         private void BtnFinishClick(object sender, EventArgs e)

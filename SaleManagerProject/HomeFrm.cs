@@ -35,6 +35,7 @@ namespace SaleManagerProject
         private List<Discount> _searchDiscountResults;
         private IDiscountController _discountController;
         private List<BillDetail> _bills;
+        private List<BillDetail> _searchedBillResults;
         public HomeFrm()
         {
             InitializeComponent();
@@ -50,6 +51,7 @@ namespace SaleManagerProject
             _searchItemResults = new List<Item>();
             _searchCustomerResults = new List<Customer>();
             _searchDiscountResults = new List<Discount>();
+            _searchedBillResults = new List<BillDetail>();
             _actionType = ActionType.NORMAL;
             // nạp dữ liệu
             _items.AddRange(Utils.CreateFakeItems());
@@ -146,10 +148,15 @@ namespace SaleManagerProject
             else if (typeof(T) == typeof(BillDetail))
             {
                 var billDetail = item as BillDetail;
+                if (_commonController.IndexOfItem(_bills, billDetail) >= 0)
+                {
+                    UpdateItem(item);
+                    return;
+                }
                 _commonController.AddNewItem(_bills, billDetail);
                 tblBill.Rows.Add(
                     new object[] {
-                        billDetail.BillId, billDetail.Cart.Customer.FullName.ToString(),
+                        billDetail.BillId, billDetail.Cart?.Customer?.FullName?.ToString(),
                         billDetail.StaffName, billDetail.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss"),
                         $"{billDetail.TotalItem:N0}",
                         $"{billDetail.SubTotal:N0}",
@@ -228,7 +235,37 @@ namespace SaleManagerProject
                         discount.DiscountPercent, $"{discount.DiscountPriceAmount:N0}"
                     }
                 );
-
+            }
+            else if (typeof(T) == typeof(BillDetail))
+            {
+                var bill = updatedItem as BillDetail;
+                if (_commonController.IndexOfItem(_bills, bill) == -1)
+                {
+                    AddNewItem(updatedItem);
+                    return;
+                }
+                int updatedIndex = -1;
+                if (_actionType == ActionType.NORMAL)
+                {
+                    updatedIndex = _commonController.UpdateItem(_bills, bill);
+                }
+                else
+                {
+                    updatedIndex = _commonController.UpdateItem(_searchedBillResults, bill);
+                    _commonController.UpdateItem(_bills, bill);
+                }
+                tblBill.Rows.RemoveAt(updatedIndex);
+                tblBill.Rows.Insert(updatedIndex,
+                    new object[] {
+                        bill.BillId, bill.Cart?.Customer?.FullName?.ToString(),
+                        bill.StaffName, bill.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss"),
+                        $"{bill.TotalItem:N0}",
+                        $"{bill.SubTotal:N0}",
+                        $"{bill.TotalDiscountAmount:N0}",
+                        $"{bill.TotalAmount:N0}",
+                        bill.Status
+                    }
+                );
             }
         }
 
@@ -700,7 +737,7 @@ namespace SaleManagerProject
         {
             if (typeof(T) == typeof(BillDetail))
             {
-                // xóa trong bảng hóa đơn
+                ShowBills(_bills);
             }
         }
 
@@ -711,6 +748,32 @@ namespace SaleManagerProject
                 var bill = _bills[e.RowIndex];
                 var createBillView = new AddEditBillFrm(this, _customers, _items, _bills, _commonController, bill);
                 createBillView.Show();
+            }
+        }
+
+        private void BtnRefreshBillClick(object sender, EventArgs e)
+        {
+            ShowBills(_bills);
+        }
+
+        private void ShowBills(List<BillDetail> bills)
+        {
+            tblBill.Rows.Clear();
+            foreach (var bill in bills)
+            {
+                var billDetail = bill;
+                // update
+                tblBill.Rows.Add(
+                    new object[] {
+                        billDetail.BillId, billDetail.Cart?.Customer?.FullName?.ToString(),
+                        billDetail.StaffName, billDetail.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss"),
+                        $"{billDetail.TotalItem:N0}",
+                        $"{billDetail.SubTotal:N0}",
+                        $"{billDetail.TotalDiscountAmount:N0}",
+                        $"{billDetail.TotalAmount:N0}",
+                        billDetail.Status
+                    }
+                );
             }
         }
     }
