@@ -38,6 +38,7 @@ namespace SaleManagerProject
         private List<BillDetail> _searchedBillResults;
         public HomeFrm()
         {
+            CenterToScreen();
             InitializeComponent();
             CenterToScreen();
             _items = new List<Item>();
