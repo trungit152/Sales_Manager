@@ -1,10 +1,6 @@
 ﻿using Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -25,7 +21,7 @@ namespace Controllers
             return item1.Price.CompareTo(item2.Price);
         }
 
-        public int CompareItemByPriceDSC(Item item1, Item item2)
+        public int CompareItemByPriceDESC(Item item1, Item item2)
         {
             return item2.Price.CompareTo(item1.Price);
         }

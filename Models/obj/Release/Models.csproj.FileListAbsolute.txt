@@ -1,0 +1,9 @@
+D:\prj\CNPM\Models\bin\Release\Models.dll
+D:\prj\CNPM\Models\bin\Release\Models.pdb
+D:\prj\CNPM\Models\bin\Release\Newtonsoft.Json.dll
+D:\prj\CNPM\Models\bin\Release\Newtonsoft.Json.xml
+D:\prj\CNPM\Models\obj\Release\Models.csproj.AssemblyReference.cache
+D:\prj\CNPM\Models\obj\Release\Models.csproj.CoreCompileInputs.cache
+D:\prj\CNPM\Models\obj\Release\Models.csproj.CopyComplete
+D:\prj\CNPM\Models\obj\Release\Models.dll
+D:\prj\CNPM\Models\obj\Release\Models.pdb

@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Models
 {
     public class Person : IComparable<Person>
     {
+        [JsonProperty("id")]
         public string PersonId { get; set; }
+        [JsonProperty("name")]
         public FullName FullName { get; set; }
+        [JsonProperty("birthDate")]
         public DateTime BirthDate { get; set; }
+        [JsonProperty("address")]
         public string Address { get; set; }
+        [JsonProperty("phoneNumber")]
         public string PhoneNumber { get; set; }
 
         public Person()
@@ -21,7 +27,7 @@ namespace Models
             PersonId = id;
         }
 
-        public Person(string personId, string fullName, DateTime birthDate,
+        public Person(string personId, string fullName, DateTime birthDate, 
             string address, string phoneNumber) : this(personId)
         {
             FullName = new FullName(fullName);

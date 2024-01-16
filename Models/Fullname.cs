@@ -1,9 +1,14 @@
-﻿namespace Models
+﻿using Newtonsoft.Json;
+
+namespace Models
 {
     public class FullName
     {
+        [JsonProperty("first")]
         public string FirstName { get; set; }
+        [JsonProperty("last")]
         public string LastName { get; set; }
+        [JsonProperty("mid")]
         public string MidName { get; set; }
 
         public FullName() { }

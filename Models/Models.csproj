@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2009D642-A8D8-42D7-8D78-0AC29D1532F3}</ProjectGuid>
+    <ProjectGuid>{DC5E4AE7-94CC-4A63-9069-F36C94FAA1EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Models</RootNamespace>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,13 +47,19 @@
     <Compile Include="Bill.cs" />
     <Compile Include="BillDetail.cs" />
     <Compile Include="Cart.cs" />
-    <Compile Include="Discount.cs" />
-    <Compile Include="Fullname.cs" />
-    <Compile Include="SelectedItem.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Discount.cs" />
+    <Compile Include="FullName.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectedItem.cs" />
+    <Compile Include="StatCustomer.cs" />
+    <Compile Include="StatModel.cs" />
+    <Compile Include="StatRevenue.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

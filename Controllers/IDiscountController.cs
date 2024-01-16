@@ -1,4 +1,5 @@
 ﻿using Models;
+
 namespace Controllers
 {
     public interface IDiscountController

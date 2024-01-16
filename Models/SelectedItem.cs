@@ -1,18 +1,20 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Models
 {
     public class SelectedItem : Item
     {
+        [JsonProperty("numOfSelectedItem")]
         public int NumberOfSelectedItem { get; set; }
+        [JsonProperty("pricteAfterDiscount")]
         public int PriceAfterDiscount { get; set; }
 
-        public SelectedItem()
-        {
+        public SelectedItem() {
             CalculatePriceAfterDiscount();
         }
 
-        public SelectedItem(Item item) : base(item.ItemId, item.ItemName, item.ItemType,
+        public SelectedItem(Item item) : base(item.ItemId, item.ItemName, item.ItemType, 
             item.Quantity, item.Brand, item.ReleaseDate, item.Price, item.Discount)
         {
             CalculatePriceAfterDiscount();
@@ -26,20 +28,19 @@ namespace Models
 
         private void CalculatePriceAfterDiscount()
         {
-            if (Discount == null)
+            if(Discount == null)
             {
                 PriceAfterDiscount = Price;
-            }
-            else
+            } else
             {
                 var currentTime = DateTime.Now;
-                if (currentTime >= Discount.StartTime && currentTime <= Discount.EndTime)
+                if(currentTime >= Discount.StartTime && currentTime <= Discount.EndTime)
                 {
-                    if (Discount.DiscountPercent > 0)
+                    if(Discount.DiscountPercent > 0)
                     {
                         PriceAfterDiscount = (int)(Price * (1 - 1.0f * Discount.DiscountPercent / 100));
                     }
-                    if (Discount.DiscountPriceAmount > 0)
+                    if(Discount.DiscountPriceAmount > 0)
                     {
                         PriceAfterDiscount = Price - Discount.DiscountPriceAmount;
                     }

@@ -1,29 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Models
-{   
-    //Lớp mô tả thông tin mặt hàng
-    public class Item : IComparable<Item>, IEquatable<Item>
+{
+    /// <summary>
+    /// Lớp mô tả thông tin mặt hàng
+    /// </summary>
+    public class Item : IComparable<Item>
     {
+        [JsonIgnore]
         private static int s_autoId = 100000;
+        [JsonProperty("id")]
         public int ItemId { get; set; }
+        [JsonProperty("name")]
         public string ItemName { get; set; }
+        [JsonProperty("type")]
         public string ItemType { get; set; }
+        [JsonProperty("quantity")]
         public int Quantity { get; set; }
+        [JsonProperty("brand")]
         public string Brand { get; set; }
+        [JsonProperty("releaseDate")]
         public DateTime ReleaseDate { get; set; }
+        [JsonProperty("price")]
         public int Price { get; set; }
+        [JsonProperty("discount")]
         public Discount Discount { get; set; }
-        public Item()
-        {
 
-        }
+        public Item() { }
+
         public Item(int id)
         {
-            ItemId= id > 0 ? id : s_autoId++;
+            ItemId = id > 0 ? id : s_autoId++;
         }
-        public Item(int itemId, string itemName, string itemType, int quantity, string brand, DateTime releaseDate, int price, Discount discount) : this(itemId)
+
+        public Item(int itemId, string itemName, string itemType,
+            int quantity, string brand, DateTime releaseDate, int price,
+            Discount discount) : this(itemId)
         {
             ItemName = itemName;
             ItemType = itemType;
@@ -33,10 +46,12 @@ namespace Models
             Price = price;
             Discount = discount;
         }
+
         public static void UpdateAutoId(int v)
         {
             s_autoId = v;
         }
+
 
         public int CompareTo(Item other)
         {
@@ -45,28 +60,13 @@ namespace Models
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as Item);
-        }
-
-        public bool Equals(Item other)
-        {
-            return !(other is null) &&
-                   ItemId == other.ItemId;
+            return obj is Item item &&
+                   ItemId == item.ItemId;
         }
 
         public override int GetHashCode()
         {
             return -2113648141 + ItemId.GetHashCode();
-        }
-
-        public static bool operator ==(Item left, Item right)
-        {
-            return EqualityComparer<Item>.Default.Equals(left, right);
-        }
-
-        public static bool operator !=(Item left, Item right)
-        {
-            return !(left == right);
         }
     }
 }

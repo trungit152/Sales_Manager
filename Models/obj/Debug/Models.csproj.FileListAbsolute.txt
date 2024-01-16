@@ -1,6 +1,9 @@
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Models\bin\Debug\Models.dll
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Models\bin\Debug\Models.pdb
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Models\obj\Debug\Models.csproj.AssemblyReference.cache
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Models\obj\Debug\Models.dll
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Models\obj\Debug\Models.pdb
+D:\prj\CNPM\Models\bin\Debug\Models.dll
+D:\prj\CNPM\Models\bin\Debug\Models.pdb
+D:\prj\CNPM\Models\bin\Debug\Newtonsoft.Json.dll
+D:\prj\CNPM\Models\bin\Debug\Newtonsoft.Json.xml
+D:\prj\CNPM\Models\obj\Debug\Models.csproj.AssemblyReference.cache
+D:\prj\CNPM\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+D:\prj\CNPM\Models\obj\Debug\Models.csproj.CopyComplete
+D:\prj\CNPM\Models\obj\Debug\Models.dll
+D:\prj\CNPM\Models\obj\Debug\Models.pdb

@@ -1,9 +1,11 @@
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\bin\Debug\Controllers.dll
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\bin\Debug\Controllers.pdb
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.csproj.AssemblyReference.cache
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.csproj.CoreCompileInputs.cache
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.dll
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.pdb
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\bin\Debug\Models.dll
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\bin\Debug\Models.pdb
-C:\Users\Phong Vu\source\repos\SaleManagerProject\Controllers\obj\Debug\Controllers.csproj.CopyComplete
+D:\prj\CNPM\Controllers\bin\Debug\Controllers.dll
+D:\prj\CNPM\Controllers\bin\Debug\Controllers.pdb
+D:\prj\CNPM\Controllers\bin\Debug\Models.dll
+D:\prj\CNPM\Controllers\bin\Debug\Newtonsoft.Json.dll
+D:\prj\CNPM\Controllers\bin\Debug\Models.pdb
+D:\prj\CNPM\Controllers\bin\Debug\Newtonsoft.Json.xml
+D:\prj\CNPM\Controllers\obj\Debug\Controllers.csproj.AssemblyReference.cache
+D:\prj\CNPM\Controllers\obj\Debug\Controllers.csproj.CoreCompileInputs.cache
+D:\prj\CNPM\Controllers\obj\Debug\Controllers.csproj.CopyComplete
+D:\prj\CNPM\Controllers\obj\Debug\Controllers.dll
+D:\prj\CNPM\Controllers\obj\Debug\Controllers.pdb

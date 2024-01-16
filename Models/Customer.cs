@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json; 
 
 namespace Models
 {
-    public class Customer : Person, IEquatable<Customer>, IComparable<Customer>
+    public class Customer : Person, IComparable<Customer>
     {
+        [JsonProperty("customerType")]
         public string CustomerType { get; set; }
+        [JsonProperty("point")]
         public int Point { get; set; }
+        [JsonProperty("createdTime")]
         public DateTime CreateTime { get; set; }
+        [JsonProperty("email")]
         public string Email { get; set; }
+
         public Customer() { }
+
         public Customer(string customerType, int point, DateTime createTime, string email)
         {
             CustomerType = customerType;
@@ -20,24 +24,23 @@ namespace Models
             CreateTime = createTime;
             Email = email;
         }
-        public Customer(string personId, string fullName, DateTime birhDate, string address, string phoneNumber, 
-            string customerType, int point, DateTime createTime, string email) : base(personId, fullName, birhDate, address, phoneNumber)
+
+        public Customer(string personId, string fullName, DateTime birthDate,
+            string address, string phoneNumber, string customerType,
+            int point, DateTime createTime, string email) :
+            base(personId, fullName, birthDate, address, phoneNumber)
         {
             CustomerType = customerType;
             Point = point;
             CreateTime = createTime;
             Email = email;
         }
+
         public override bool Equals(object obj)
         {
-            return Equals(obj as Customer);
-        }
-
-        public bool Equals(Customer other)
-        {
-            return !(other is null) &&
-                   base.Equals(other) &&
-                   PersonId == other.PersonId;
+            return obj is Customer customer &&
+                   base.Equals(obj) &&
+                   PersonId == customer.PersonId;
         }
 
         public override int GetHashCode()
@@ -52,16 +55,5 @@ namespace Models
         {
             return PersonId.CompareTo(other.PersonId);
         }
-
-        public static bool operator ==(Customer left, Customer right)
-        {
-            return EqualityComparer<Customer>.Default.Equals(left, right);
-        }
-
-        public static bool operator !=(Customer left, Customer right)
-        {
-            return !(left == right);
-        }
     }
-
 }

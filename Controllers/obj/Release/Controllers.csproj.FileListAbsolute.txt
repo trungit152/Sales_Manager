@@ -1,0 +1,11 @@
+D:\prj\CNPM\Controllers\bin\Release\Controllers.dll
+D:\prj\CNPM\Controllers\bin\Release\Controllers.pdb
+D:\prj\CNPM\Controllers\bin\Release\Models.dll
+D:\prj\CNPM\Controllers\bin\Release\Newtonsoft.Json.dll
+D:\prj\CNPM\Controllers\bin\Release\Models.pdb
+D:\prj\CNPM\Controllers\bin\Release\Newtonsoft.Json.xml
+D:\prj\CNPM\Controllers\obj\Release\Controllers.csproj.AssemblyReference.cache
+D:\prj\CNPM\Controllers\obj\Release\Controllers.csproj.CoreCompileInputs.cache
+D:\prj\CNPM\Controllers\obj\Release\Controllers.csproj.CopyComplete
+D:\prj\CNPM\Controllers\obj\Release\Controllers.dll
+D:\prj\CNPM\Controllers\obj\Release\Controllers.pdb

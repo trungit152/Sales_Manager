@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D0A9751D-DA3B-4AAC-B3A5-F952BCF414B1}</ProjectGuid>
+    <ProjectGuid>{AAE7A599-7B9C-4397-997A-57E23EAD3DEA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Controllers</RootNamespace>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,10 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillController.cs" />
-    <Compile Include="CommomController.cs" />
-    <Compile Include="CustomerControllerImpliment.cs" />
+    <Compile Include="BillFinder.cs" />
+    <Compile Include="BillSorter.cs" />
+    <Compile Include="CommonController.cs" />
+    <Compile Include="CustomerController.cs" />
     <Compile Include="DiscountController.cs" />
     <Compile Include="IBillController.cs" />
+    <Compile Include="IBillFinder.cs" />
+    <Compile Include="IBillSorter.cs" />
     <Compile Include="ICommonController.cs" />
     <Compile Include="ICustomerController.cs" />
     <Compile Include="IDiscountController.cs" />
@@ -55,16 +62,23 @@
     <Compile Include="InvalidItemNameException.cs" />
     <Compile Include="InvalidNameException.cs" />
     <Compile Include="InvalidPhoneNumberException.cs" />
+    <Compile Include="IOController.cs" />
     <Compile Include="IStatController.cs" />
     <Compile Include="ItemController.cs" />
+    <Compile Include="IUpdateAutoId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatController.cs" />
+    <Compile Include="UpdateAutoId.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{2009d642-a8d8-42d7-8d78-0ac29d1532f3}</Project>
+      <Project>{dc5e4ae7-94cc-4a63-9069-f36c94faa1ec}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

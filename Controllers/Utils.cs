@@ -19,6 +19,7 @@ namespace Controllers
             items.Add(new Item(0, "Quần short", "Thời trang", 100, "Việt Tiến", DateTime.Now, 125000, null));
             return items;
         }
+
         public static List<Customer> CreateFakeCustomer()
         {
             List<Customer> customers = new List<Customer>();
@@ -46,7 +47,7 @@ namespace Controllers
             customers.Add(new Customer("0123654789128", "Nguyễn Thùy Dung",
                 DateTime.ParseExact("17/09/2000", "dd/MM/yyyy", null), "Thái Bình", "0979123450",
                 "Khách mua lẻ", 100, DateTime.Now, "thuydungnguyen@xmail.com"));
-            customers.Add(new Customer("0123654789130", "Khắc Đức Tâm",
+            customers.Add(new Customer("0923654789128", "Khắc Đức Tâm",
                 DateTime.ParseExact("18/01/2003", "dd/MM/yyyy", null), "Bắc Giang", "0979123450",
                 "Khách mua buôn", 1000, DateTime.Now, "avantamkaka@xmail.com"));
             return customers;
@@ -71,7 +72,7 @@ namespace Controllers
             discounts.Add(new Discount(0, "KM 3/3",
                 DateTime.ParseExact("03/03/2022 03:03:03", dateTimeFormat, null),
                 DateTime.ParseExact("03/03/2022 23:59:59", dateTimeFormat, null),
-                "Phần trăm giá bán", 0, 20));
+                "Khuyến mãi % giá bán", 0, 20));
             discounts.Add(new Discount(0, "KM 4/4",
                 DateTime.ParseExact("04/04/2022 04:04:04", dateTimeFormat, null),
                 DateTime.ParseExact("04/04/2022 23:59:59", dateTimeFormat, null),
@@ -79,7 +80,7 @@ namespace Controllers
             discounts.Add(new Discount(0, "KM 5/5",
                 DateTime.ParseExact("05/05/2022 05:05:05", dateTimeFormat, null),
                 DateTime.ParseExact("05/05/2022 23:59:59", dateTimeFormat, null),
-                "Phần trăm giá bán", 0, 30));
+                "Khuyến mãi % giá bán", 0, 30));
             return discounts;
         }
     }

@@ -1,10 +1,13 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Models
 {
     public class BillDetail : Bill
     {
+        [JsonProperty("paymentMethod")]
         public string PaymentMethod { get; set; }
+        [JsonProperty("staff")]
         public string StaffName { get; set; }
 
         public BillDetail()
@@ -21,8 +24,8 @@ namespace Models
 
         public BillDetail(int billId, Cart cart, DateTime createdTime, int totalItem,
             long subTotal, long totalDiscountAmount, long totalAmount, string status,
-            string paymentMethod, string staffName) :
-            base(billId, cart, createdTime, totalItem, subTotal,
+            string paymentMethod, string staffName) : 
+            base(billId, cart, createdTime, totalItem, subTotal, 
                 totalDiscountAmount, totalAmount, status)
         {
             PaymentMethod = paymentMethod;
